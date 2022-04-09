@@ -1,0 +1,530 @@
+﻿-1;1;1;P 1;P 1
+-1;2;2;P -1;P -1
+2/m;3;3;P 2;P 1 2 1
+2/m;4;3;P 2;P 1 1 2
+2/m;5;3;P 2;P 2 1 1
+2/m;6;4;P 21;P 1 21 1
+2/m;7;4;P 21;P 1 1 21
+2/m;8;4;P 21;P 21 1 1
+2/m;9;5;C 2;C 1 2 1
+2/m;10;5;C 2;A 1 2 1
+2/m;11;5;C 2;I 1 2 1
+2/m;12;5;C 2;A 1 1 2
+2/m;13;5;C 2;B 1 1 2
+2/m;14;5;C 2;I 1 1 2
+2/m;15;5;C 2;B 2 1 1
+2/m;16;5;C 2;C 2 1 1
+2/m;17;5;C 2;I 2 1 1
+2/m;18;6;P m;P 1 m 1
+2/m;19;6;P m;P 1 1 m
+2/m;20;6;P m;P m 1 1
+2/m;21;7;P c;P 1 c 1
+2/m;22;7;P c;P 1 n 1
+2/m;23;7;P c;P 1 a 1
+2/m;24;7;P c;P 1 1 a
+2/m;25;7;P c;P 1 1 n
+2/m;26;7;P c;P 1 1 b
+2/m;27;7;P c;P b 1 1
+2/m;28;7;P c;P n 1 1
+2/m;29;7;P c;P c 1 1
+2/m;30;8;C m;C 1 m 1
+2/m;31;8;C m;A 1 m 1
+2/m;32;8;C m;I 1 m 1
+2/m;33;8;C m;A 1 1 m
+2/m;34;8;C m;B 1 1 m
+2/m;35;8;C m;I 1 1 m
+2/m;36;8;C m;B m 1 1
+2/m;37;8;C m;C m 1 1
+2/m;38;8;C m;I m 1 1
+2/m;39;9;C c;C 1 c 1
+2/m;40;9;C c;A 1 n 1
+2/m;41;9;C c;I 1 a 1
+2/m;42;9;C c;A 1 a 1
+2/m;43;9;C c;C 1 n 1
+2/m;44;9;C c;I 1 c 1
+2/m;45;9;C c;A 1 1 a
+2/m;46;9;C c;B 1 1 n
+2/m;47;9;C c;I 1 1 b
+2/m;48;9;C c;B 1 1 b
+2/m;49;9;C c;A 1 1 n
+2/m;50;9;C c;I 1 1 a
+2/m;51;9;C c;B b 1 1
+2/m;52;9;C c;C n 1 1
+2/m;53;9;C c;I c 1 1
+2/m;54;9;C c;C c 1 1
+2/m;55;9;C c;B n 1 1
+2/m;56;9;C c;I b 1 1
+2/m;57;10;P 2/m;P 1 2/m 1
+2/m;58;10;P 2/m;P 1 1 2/m
+2/m;59;10;P 2/m;P 2/m 1 1
+2/m;60;11;P 21/m;P 1 21/m 1
+2/m;61;11;P 21/m;P 1 1 21/m
+2/m;62;11;P 21/m;P 21/m 1 1
+2/m;63;12;C 2/m;C 1 2/m 1
+2/m;64;12;C 2/m;A 1 2/m 1
+2/m;65;12;C 2/m;I 1 2/m 1
+2/m;66;12;C 2/m;A 1 1 2/m
+2/m;67;12;C 2/m;B 1 1 2/m
+2/m;68;12;C 2/m;I 1 1 2/m
+2/m;69;12;C 2/m;B 2/m 1 1
+2/m;70;12;C 2/m;C 2/m 1 1
+2/m;71;12;C 2/m;I 2/m 1 1
+2/m;72;13;P 2/c;P 1 2/c 1
+2/m;73;13;P 2/c;P 1 2/n 1
+2/m;74;13;P 2/c;P 1 2/a 1
+2/m;75;13;P 2/c;P 1 1 2/a
+2/m;76;13;P 2/c;P 1 1 2/n
+2/m;77;13;P 2/c;P 1 1 2/b
+2/m;78;13;P 2/c;P 2/b 1 1
+2/m;79;13;P 2/c;P 2/n 1 1
+2/m;80;13;P 2/c;P 2/c 1 1
+2/m;81;14;P 21/c;P 1 21/c 1
+2/m;82;14;P 21/c;P 1 21/n 1
+2/m;83;14;P 21/c;P 1 21/a 1
+2/m;84;14;P 21/c;P 1 1 21/a
+2/m;85;14;P 21/c;P 1 1 21/n
+2/m;86;14;P 21/c;P 1 1 21/b
+2/m;87;14;P 21/c;P 21/b 1 1
+2/m;88;14;P 21/c;P 21/n 1 1
+2/m;89;14;P 21/c;P 21/c 1 1
+2/m;90;15;C 2/c;C 1 2/c 1
+2/m;91;15;C 2/c;A 1 2/n 1
+2/m;92;15;C 2/c;I 1 2/a 1
+2/m;93;15;C 2/c;A 1 2/a 1
+2/m;94;15;C 2/c;C 1 2/n 1
+2/m;95;15;C 2/c;I 1 2/c 1
+2/m;96;15;C 2/c;A 1 1 2/a
+2/m;97;15;C 2/c;B 1 1 2/n
+2/m;98;15;C 2/c;I 1 1 2/b
+2/m;99;15;C 2/c;B 1 1 2/b
+2/m;100;15;C 2/c;A 1 1 2/n
+2/m;101;15;C 2/c;I 1 1 2/a
+2/m;102;15;C 2/c;B 2/b 1 1
+2/m;103;15;C 2/c;C 2/n 1 1
+2/m;104;15;C 2/c;I 2/c 1 1
+2/m;105;15;C 2/c;C 2/c 1 1
+2/m;106;15;C 2/c;B 2/n 1 1
+2/m;107;15;C 2/c;I 2/b 1 1
+mmm;108;16;P 2 2 2;P 2 2 2
+mmm;109;17;P 2 2 21;P 2 2 21
+mmm;110;17;P 2 2 21;P 21 2 2
+mmm;111;17;P 2 2 21;P 2 21 2
+mmm;112;18;P 21 21 2;P 21 21 2
+mmm;113;18;P 21 21 2;P 2 21 21
+mmm;114;18;P 21 21 2;P 21 2 21
+mmm;115;19;P 21 21 21;P 21 21 21
+mmm;116;20;C 2 2 21;C 2 2 21
+mmm;117;20;C 2 2 21;A 21 2 2
+mmm;118;20;C 2 2 21;B 2 21 2
+mmm;119;21;C 2 2 2;C 2 2 2
+mmm;120;21;C 2 2 2;A 2 2 2
+mmm;121;21;C 2 2 2;B 2 2 2
+mmm;122;22;F 2 2 2;F 2 2 2
+mmm;123;23;I 2 2 2;I 2 2 2
+mmm;124;24;I 21 21 21;I 21 21 21
+mmm;125;25;P m m 2;P m m 2
+mmm;126;25;P m m 2;P 2 m m
+mmm;127;25;P m m 2;P m 2 m
+mmm;128;26;P m c 21;P m c 21
+mmm;129;26;P m c 21;P c m 21
+mmm;130;26;P m c 21;P 21 m a
+mmm;131;26;P m c 21;P 21 a m
+mmm;132;26;P m c 21;P b 21 m
+mmm;133;26;P m c 21;P m 21 b
+mmm;134;27;P c c 2;P c c 2
+mmm;135;27;P c c 2;P 2 a a
+mmm;136;27;P c c 2;P b 2 b
+mmm;137;28;P m a 2;P m a 2
+mmm;138;28;P m a 2;P b m 2
+mmm;139;28;P m a 2;P 2 m b
+mmm;140;28;P m a 2;P 2 c m
+mmm;141;28;P m a 2;P c 2 m
+mmm;142;28;P m a 2;P m 2 a
+mmm;143;29;P c a 21;P c a 21
+mmm;144;29;P c a 21;P b c 21
+mmm;145;29;P c a 21;P 21 a b
+mmm;146;29;P c a 21;P 21 c a
+mmm;147;29;P c a 21;P c 21 b
+mmm;148;29;P c a 21;P b 21 a
+mmm;149;30;P n c 2;P n c 2
+mmm;150;30;P n c 2;P c n 2
+mmm;151;30;P n c 2;P 2 n a
+mmm;152;30;P n c 2;P 2 a n
+mmm;153;30;P n c 2;P b 2 n
+mmm;154;30;P n c 2;P n 2 b
+mmm;155;31;P m n 21;P m n 21
+mmm;156;31;P m n 21;P n m 21
+mmm;157;31;P m n 21;P 21 m n
+mmm;158;31;P m n 21;P 21 n m
+mmm;159;31;P m n 21;P n 21 m
+mmm;160;31;P m n 21;P m 21 n
+mmm;161;32;P b a 2;P b a 2
+mmm;162;32;P b a 2;P 2 c b
+mmm;163;32;P b a 2;P c 2 a
+mmm;164;33;P n a 21;P n a 21
+mmm;165;33;P n a 21;P b n 21
+mmm;166;33;P n a 21;P 21 n b
+mmm;167;33;P n a 21;P 21 c n
+mmm;168;33;P n a 21;P c 21 n
+mmm;169;33;P n a 21;P n 21 a
+mmm;170;34;P n n 2;P n n 2
+mmm;171;34;P n n 2;P 2 n n
+mmm;172;34;P n n 2;P n 2 n
+mmm;173;35;C m m 2;C m m 2
+mmm;174;35;C m m 2;A 2 m m
+mmm;175;35;C m m 2;B m 2 m
+mmm;176;36;C m c 21;C m c 21
+mmm;177;36;C m c 21;C c m 21
+mmm;178;36;C m c 21;A 21 m a
+mmm;179;36;C m c 21;A 21 a m
+mmm;180;36;C m c 21;B b 21 m
+mmm;181;36;C m c 21;B m 21 b
+mmm;182;37;C c c 2;C c c 2
+mmm;183;37;C c c 2;A 2 a a
+mmm;184;37;C c c 2;B b 2 b
+mmm;185;38;A m m 2;A m m 2
+mmm;186;38;A m m 2;B m m 2
+mmm;187;38;A m m 2;B 2 m m
+mmm;188;38;A m m 2;C 2 m m
+mmm;189;38;A m m 2;C m 2 m
+mmm;190;38;A m m 2;A m 2 m
+mmm;191;39;A b m 2;A b m 2
+mmm;192;39;A b m 2;B m a 2
+mmm;193;39;A b m 2;B 2 c m
+mmm;194;39;A b m 2;C 2 m b
+mmm;195;39;A b m 2;C m 2 a
+mmm;196;39;A b m 2;A c 2 m
+mmm;197;40;A m a 2;A m a 2
+mmm;198;40;A m a 2;B b m 2
+mmm;199;40;A m a 2;B 2 m b
+mmm;200;40;A m a 2;C 2 c m
+mmm;201;40;A m a 2;C c 2 m
+mmm;202;40;A m a 2;A m 2 a
+mmm;203;41;A b a 2;A b a 2
+mmm;204;41;A b a 2;B b a 2
+mmm;205;41;A b a 2;B 2 c b
+mmm;206;41;A b a 2;C 2 c b
+mmm;207;41;A b a 2;C c 2 a
+mmm;208;41;A b a 2;A c 2 a
+mmm;209;42;F m m 2;F m m 2
+mmm;210;42;F m m 2;F 2 m m
+mmm;211;42;F m m 2;F m 2 m
+mmm;212;43;F d d 2;F d d 2
+mmm;213;43;F d d 2;F 2 d d
+mmm;214;43;F d d 2;F d 2 d
+mmm;215;44;I m m 2;I m m 2
+mmm;216;44;I m m 2;I 2 m m
+mmm;217;44;I m m 2;I m 2 m
+mmm;218;45;I b a 2;I b a 2
+mmm;219;45;I b a 2;I 2 c b
+mmm;220;45;I b a 2;I c 2 a
+mmm;221;46;I m a 2;I m a 2
+mmm;222;46;I m a 2;I b m 2
+mmm;223;46;I m a 2;I 2 m b
+mmm;224;46;I m a 2;I 2 c m
+mmm;225;46;I m a 2;I c 2 m
+mmm;226;46;I m a 2;I m 2 a
+mmm;227;47;P m m m;P m m m
+mmm;228;48;P n n n;P n n n
+mmm;229;48;P n n n;P n n n
+mmm;230;49;P c c m;P c c m
+mmm;231;49;P c c m;P m a a
+mmm;232;49;P c c m;P b m b
+mmm;233;50;P b a n;P b a n
+mmm;234;50;P b a n;P b a n
+mmm;235;50;P b a n;P n c b
+mmm;236;50;P b a n;P n c b
+mmm;237;50;P b a n;P c n a
+mmm;238;50;P b a n;P c n a
+mmm;239;51;P m m a;P m m a
+mmm;240;51;P m m a;P m m b
+mmm;241;51;P m m a;P b m m
+mmm;242;51;P m m a;P c m m
+mmm;243;51;P m m a;P m c m
+mmm;244;51;P m m a;P m a m
+mmm;245;52;P n n a;P n n a
+mmm;246;52;P n n a;P n n b
+mmm;247;52;P n n a;P b n n
+mmm;248;52;P n n a;P c n n
+mmm;249;52;P n n a;P n c n
+mmm;250;52;P n n a;P n a n
+mmm;251;53;P m n a;P m n a
+mmm;252;53;P m n a;P n m b
+mmm;253;53;P m n a;P b m n
+mmm;254;53;P m n a;P c n m
+mmm;255;53;P m n a;P n c m
+mmm;256;53;P m n a;P m a n
+mmm;257;54;P c c a;P c c a
+mmm;258;54;P c c a;P c c b
+mmm;259;54;P c c a;P b a a
+mmm;260;54;P c c a;P c a a
+mmm;261;54;P c c a;P b c b
+mmm;262;54;P c c a;P b a b
+mmm;263;55;P b a m;P b a m
+mmm;264;55;P b a m;P m c b
+mmm;265;55;P b a m;P c m a
+mmm;266;56;P c c n;P c c n
+mmm;267;56;P c c n;P n a a
+mmm;268;56;P c c n;P b n b
+mmm;269;57;P b c m;P b c m
+mmm;270;57;P b c m;P c a m
+mmm;271;57;P b c m;P m c a
+mmm;272;57;P b c m;P m a b
+mmm;273;57;P b c m;P b m a
+mmm;274;57;P b c m;P c m b
+mmm;275;58;P n n m;P n n m
+mmm;276;58;P n n m;P m n n
+mmm;277;58;P n n m;P n m n
+mmm;278;59;P m m n;P m m n
+mmm;279;59;P m m n;P m m n
+mmm;280;59;P m m n;P n m m
+mmm;281;59;P m m n;P n m m
+mmm;282;59;P m m n;P m n m
+mmm;283;59;P m m n;P m n m
+mmm;284;60;P b c n;P b c n
+mmm;285;60;P b c n;P c a n
+mmm;286;60;P b c n;P n c a
+mmm;287;60;P b c n;P n a b
+mmm;288;60;P b c n;P b n a
+mmm;289;60;P b c n;P c n b
+mmm;290;61;P b c a;P b c a
+mmm;291;61;P b c a;P c a b
+mmm;292;62;P n m a;P n m a
+mmm;293;62;P n m a;P m n b
+mmm;294;62;P n m a;P b n m
+mmm;295;62;P n m a;P c m n
+mmm;296;62;P n m a;P m c n
+mmm;297;62;P n m a;P n a m
+mmm;298;63;C m c m;C m c m
+mmm;299;63;C m c m;C c m m
+mmm;300;63;C m c m;A m m a
+mmm;301;63;C m c m;A m a m
+mmm;302;63;C m c m;B b m m
+mmm;303;63;C m c m;B m m b
+mmm;304;64;C m c a;C m c a
+mmm;305;64;C m c a;C c m b
+mmm;306;64;C m c a;A b m a
+mmm;307;64;C m c a;A c a m
+mmm;308;64;C m c a;B b c m
+mmm;309;64;C m c a;B m a b
+mmm;310;65;C m m m;C m m m
+mmm;311;65;C m m m;A m m m
+mmm;312;65;C m m m;B m m m
+mmm;313;66;C c c m;C c c m
+mmm;314;66;C c c m;A m a a
+mmm;315;66;C c c m;B b m b
+mmm;316;67;C m m a;C m m a
+mmm;317;67;C m m a;C m m b
+mmm;318;67;C m m a;A b m m
+mmm;319;67;C m m a;A c m m
+mmm;320;67;C m m a;B m c m
+mmm;321;67;C m m a;B m a m
+mmm;322;68;C c c a;C c c a
+mmm;323;68;C c c a;C c c a
+mmm;324;68;C c c a;C c c b
+mmm;325;68;C c c a;C c c b
+mmm;326;68;C c c a;A b a a
+mmm;327;68;C c c a;A b a a
+mmm;328;68;C c c a;A c a a
+mmm;329;68;C c c a;A c a a
+mmm;330;68;C c c a;B b c b
+mmm;331;68;C c c a;B b c b
+mmm;332;68;C c c a;B b a b
+mmm;333;68;C c c a;B b a b
+mmm;334;69;F m m m;F m m m
+mmm;335;70;F d d d;F d d d
+mmm;336;70;F d d d;F d d d
+mmm;337;71;I m m m;I m m m
+mmm;338;72;I b a m;I b a m
+mmm;339;72;I b a m;I m c b
+mmm;340;72;I b a m;I c m a
+mmm;341;73;I b c a;I b c a
+mmm;342;73;I b c a;I c a b
+mmm;343;74;I m m a;I m m a
+mmm;344;74;I m m a;I m m b
+mmm;345;74;I m m a;I b m m
+mmm;346;74;I m m a;I c m m
+mmm;347;74;I m m a;I m c m
+mmm;348;74;I m m a;I m a m
+4/m;349;75;P 4;P 4
+4/m;350;76;P 41;P 41
+4/m;351;77;P 42;P 42
+4/m;352;78;P 43;P 43
+4/m;353;79;I 4;I 4
+4/m;354;80;I 41;I 41
+4/m;355;81;P -4;P -4
+4/m;356;82;I -4;I -4
+4/m;357;83;P 4/m;P 4/m
+4/m;358;84;P 42/m;P 42/m
+4/m;359;85;P 4/n;P 4/n
+4/m;360;85;P 4/n;P 4/n
+4/m;361;86;P 42/n;P 42/n
+4/m;362;86;P 42/n;P 42/n
+4/m;363;87;I 4/m;I 4/m
+4/m;364;88;I 41/a;I 41/a
+4/m;365;88;I 41/a;I 41/a
+4/mmm;366;89;P 4 2 2;P 4 2 2
+4/mmm;367;90;P 4 21 2;P 4 21 2
+4/mmm;368;91;P 41 2 2;P 41 2 2
+4/mmm;369;92;P 41 21 2;P 41 21 2
+4/mmm;370;93;P 42 2 2;P 42 2 2
+4/mmm;371;94;P 42 21 2;P 42 21 2
+4/mmm;372;95;P 43 2 2;P 43 2 2
+4/mmm;373;96;P 43 21 2;P 43 21 2
+4/mmm;374;97;I 4 2 2;I 4 2 2
+4/mmm;375;98;I 41 2 2;I 41 2 2
+4/mmm;376;99;P 4 m m;P 4 m m
+4/mmm;377;100;P 4 b m;P 4 b m
+4/mmm;378;101;P 42 c m;P 42 c m
+4/mmm;379;102;P 42 n m;P 42 n m
+4/mmm;380;103;P 4 c c;P 4 c c
+4/mmm;381;104;P 4 n c;P 4 n c
+4/mmm;382;105;P 42 m c;P 42 m c
+4/mmm;383;106;P 42 b c;P 42 b c
+4/mmm;384;107;I 4 m m;I 4 m m
+4/mmm;385;108;I 4 c m;I 4 c m
+4/mmm;386;109;I 41 m d;I 41 m d
+4/mmm;387;110;I 41 c d;I 41 c d
+4/mmm;388;111;P -4 2 m;P -4 2 m
+4/mmm;389;112;P -4 2 c;P -4 2 c
+4/mmm;390;113;P -4 21 m;P -4 21 m
+4/mmm;391;114;P -4 21 c;P -4 21 c
+4/mmm;392;115;P -4 m 2;P -4 m 2
+4/mmm;393;116;P -4 c 2;P -4 c 2
+4/mmm;394;117;P -4 b 2;P -4 b 2
+4/mmm;395;118;P -4 n 2;P -4 n 2
+4/mmm;396;119;I -4 m 2;I -4 m 2
+4/mmm;397;120;I -4 c 2;I -4 c 2
+4/mmm;398;121;I -4 2 m;I -4 2 m
+4/mmm;399;122;I -4 2 d;I -4 2 d
+4/mmm;400;123;P 4/m m m;P 4/m m m
+4/mmm;401;124;P 4/m c c;P 4/m c c
+4/mmm;402;125;P 4/n b m;P 4/n b m
+4/mmm;403;125;P 4/n b m;P 4/n b m
+4/mmm;404;126;P 4/n n c;P 4/n n c
+4/mmm;405;126;P 4/n n c;P 4/n n c
+4/mmm;406;127;P 4/m b m;P 4/m b m
+4/mmm;407;128;P 4/m n c;P 4/m n c
+4/mmm;408;129;P 4/n m m;P 4/n m m
+4/mmm;409;129;P 4/n m m;P 4/n m m
+4/mmm;410;130;P 4/n c c;P 4/n c c
+4/mmm;411;130;P 4/n c c;P 4/n c c
+4/mmm;412;131;P 42/m m c;P 42/m m c
+4/mmm;413;132;P 42/m c m;P 42/m c m
+4/mmm;414;133;P 42/n b c;P 42/n b c
+4/mmm;415;133;P 42/n b c;P 42/n b c
+4/mmm;416;134;P 42/n n m;P 42/n n m
+4/mmm;417;134;P 42/n n m;P 42/n n m
+4/mmm;418;135;P 42/m b c;P 42/m b c
+4/mmm;419;136;P 42/m n m;P 42/m n m
+4/mmm;420;137;P 42/n m c;P 42/n m c
+4/mmm;421;137;P 42/n m c;P 42/n m c
+4/mmm;422;138;P 42/n c m;P 42/n c m
+4/mmm;423;138;P 42/n c m;P 42/n c m
+4/mmm;424;139;I 4/m m m;I 4/m m m
+4/mmm;425;140;I 4/m c m;I 4/m c m
+4/mmm;426;141;I 41/a m d;I 41/a m d
+4/mmm;427;141;I 41/a m d;I 41/a m d
+4/mmm;428;142;I 41/a c d;I 41/a c d
+4/mmm;429;142;I 41/a c d;I 41/a c d
+-3;430;143;P 3;P 3
+-3;431;144;P 31;P 31
+-3;432;145;P 32;P 32
+-3;433;146;R 3;R 3
+-3;434;146;R 3;R 3
+-3;435;147;P -3;P -3
+-3;436;148;R -3;R -3
+-3;437;148;R -3;R -3
+-31m;438;149;P 3 1 2;P 3 1 2
+-31m;439;150;P 3 2 1;P 3 2 1
+-31m;440;151;P 31 1 2;P 31 1 2
+-31m;441;152;P 31 2 1;P 31 2 1
+-31m;442;153;P 32 1 2;P 32 1 2
+-31m;443;154;P 32 2 1;P 32 2 1
+-31m;444;155;R 3 2;R 3 2
+-31m;445;155;R 3 2;R 3 2
+-3m1;446;156;P 3 m 1;P 3 m 1
+-3m1;447;157;P 3 1 m;P 3 1 m
+-3m1;448;158;P 3 c 1;P 3 c 1
+-3m1;449;159;P 3 1 c;P 3 1 c
+-3m1;450;160;R 3 m;R 3 m
+-3m1;451;160;R 3 m;R 3 m
+-3m1;452;161;R 3 c;R 3 c
+-3m1;453;161;R 3 c;R 3 c
+-3m;454;162;P -3 1 m;P -3 1 m
+-3m;455;163;P -3 1 c;P -3 1 c
+-3m;456;164;P -3 m 1;P -3 m 1
+-3m;457;165;P -3 c 1;P -3 c 1
+-3m;458;166;R -3 m;R -3 m
+-3m;459;166;R -3 m;R -3 m
+-3m;460;167;R -3 c;R -3 c
+-3m;461;167;R -3 c;R -3 c
+6/m;462;168;P 6;P 6
+6/m;463;169;P 61;P 61
+6/m;464;170;P 65;P 65
+6/m;465;171;P 62;P 62
+6/m;466;172;P 64;P 64
+6/m;467;173;P 63;P 63
+6/m;468;174;P -6;P -6
+6/m;469;175;P 6/m;P 6/m
+6/m;470;176;P 63/m;P 63/m
+6/mmm;471;177;P 6 2 2;P 6 2 2
+6/mmm;472;178;P 61 2 2;P 61 2 2
+6/mmm;473;179;P 65 2 2;P 65 2 2
+6/mmm;474;180;P 62 2 2;P 62 2 2
+6/mmm;475;181;P 64 2 2;P 64 2 2
+6/mmm;476;182;P 63 2 2;P 63 2 2
+6/mmm;477;183;P 6 m m;P 6 m m
+6/mmm;478;184;P 6 c c;P 6 c c
+6/mmm;479;185;P 63 c m;P 63 c m
+6/mmm;480;186;P 63 m c;P 63 m c
+6/mmm;481;187;P -6 m 2;P -6 m 2
+6/mmm;482;188;P -6 c 2;P -6 c 2
+6/mmm;483;189;P -6 2 m;P -6 2 m
+6/mmm;484;190;P -6 2 c;P -6 2 c
+6/mmm;485;191;P 6/m m m;P 6/m m m
+6/mmm;486;192;P 6/m c c;P 6/m c c
+6/mmm;487;193;P 63/m c m;P 63/m c m
+6/mmm;488;194;P 63/m m c;P 63/m m c
+m3;489;195;P 2 3;P 2 3
+m3;490;196;F 2 3;F 2 3
+m3;491;197;I 2 3;I 2 3
+m3;492;198;P 21 3;P 21 3
+m3;493;199;I 21 3;I 21 3
+m3;494;200;P m 3;P m -3
+m3;495;201;P n 3;P n -3
+m3;496;201;P n 3;P n -3
+m3;497;202;F m 3;F m -3
+m3;498;203;F d 3;F d -3
+m3;499;203;F d 3;F d -3
+m3;500;204;I m 3;I m -3
+m3;501;205;P a 3;P a -3
+m3;502;206;I a 3;I a -3
+m3m;503;207;P 4 3 2;P 4 3 2
+m3m;504;208;P 42 3 2;P 42 3 2
+m3m;505;209;F 4 3 2;F 4 3 2
+m3m;506;210;F 41 3 2;F 41 3 2
+m3m;507;211;I 4 3 2;I 4 3 2
+m3m;508;212;P 43 3 2;P 43 3 2
+m3m;509;213;P 41 3 2;P 41 3 2
+m3m;510;214;I 41 3 2;I 41 3 2
+m3m;511;215;P -4 3 m;P -4 3 m
+m3m;512;216;F -4 3 m;F -4 3 m
+m3m;513;217;I -4 3 m;I -4 3 m
+m3m;514;218;P -4 3 n;P -4 3 n
+m3m;515;219;F -4 3 c;F -4 3 c
+m3m;516;220;I -4 3 d;I -4 3 d
+m3m;517;221;P m 3 m;P m -3 m
+m3m;518;222;P n 3 n;P n -3 n
+m3m;519;222;P n 3 n;P n -3 n
+m3m;520;223;P m 3 n;P m -3 n
+m3m;521;224;P n 3 m;P n -3 m
+m3m;522;224;P n 3 m;P n -3 m
+m3m;523;225;F m 3 m;F m -3 m
+m3m;524;226;F m 3 c;F m -3 c
+m3m;525;227;F d 3 m;F d -3 m
+m3m;526;227;F d 3 m;F d -3 m
+m3m;527;228;F d 3 c;F d -3 c
+m3m;528;228;F d 3 c;F d -3 c
+m3m;529;229;I m 3 m;I m -3 m
+m3m;530;230;I a 3 d;I a -3 d

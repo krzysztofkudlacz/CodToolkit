@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace CodToolkit.Model
+namespace CodToolkit.Cod
 {
     public class CodEntryInfo
     {
@@ -8,32 +8,38 @@ namespace CodToolkit.Model
         public int NumberInCollection { get; set; }
 
         [JsonIgnore]
-        public string CellParameters => $"{a}; {b}; {c}; {alpha}; {beta}; {gamma}";
+        public string CellParameters => $"{A}; {B}; {C}; {Alpha}; {Beta}; {Gamma}";
 
         [JsonProperty("file")]
         public string FileId { get; set; }
 
-        public string a { get; set; }
+        [JsonProperty("a")]
+        public string A { get; set; }
 
         public object siga { get; set; }
 
-        public string b { get; set; }
+        [JsonProperty("b")]
+        public string B { get; set; }
 
         public object sigb { get; set; }
 
-        public string c { get; set; }
+        [JsonProperty("c")]
+        public string C { get; set; }
 
         public object sigc { get; set; }
 
-        public string alpha { get; set; }
+        [JsonProperty("alpha")]
+        public string Alpha { get; set; }
 
         public object sigalpha { get; set; }
 
-        public string beta { get; set; }
+        [JsonProperty("beta")]
+        public string Beta { get; set; }
 
         public object sigbeta { get; set; }
 
-        public string gamma { get; set; }
+        [JsonProperty("gamma")]
+        public string Gamma { get; set; }
 
         public object siggamma { get; set; }
 
