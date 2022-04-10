@@ -64,10 +64,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Algebra\Matrix3X3.cs" />
+    <Compile Include="Algebra\Vector3.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Crystallography\CrystalLattice.cs" />
+    <Compile Include="Crystallography\CrystalLatticeParameters.cs" />
+    <Compile Include="Crystallography\ILaueClass.cs" />
+    <Compile Include="Crystallography\SpaceGroupInfo.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -101,11 +107,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Crystallography\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Cod\SpaceGroupToLaueMap.txt" />
+    <EmbeddedResource Include="Cod\SpaceGroupToLaueMap.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
