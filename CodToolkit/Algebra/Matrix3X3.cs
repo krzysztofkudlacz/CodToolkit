@@ -6,6 +6,8 @@ namespace CodToolkit.Algebra
     {
         double this[int row, int column] { get; }
 
+        IMatrix3X3 Transpose();
+
         IMatrix3X3 Inverse();
     }
 
@@ -29,7 +31,7 @@ namespace CodToolkit.Algebra
             set => _matrix[row, column] = value;
         }
 
-        public static IMatrix3X3 Multiply(Matrix3X3 matrix1, Matrix3X3 matrix2)
+        public static IMatrix3X3 Multiply(IMatrix3X3 matrix1, IMatrix3X3 matrix2)
         {
             var matrix = new Matrix3X3();
 
@@ -43,6 +45,19 @@ namespace CodToolkit.Algebra
             }
 
             return matrix;
+        }
+
+        public static IVector3 Multiply(IMatrix3X3 matrix, IVector3 vector)
+        {
+            var result = new Vector3();
+
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 0; j < 3; j++)
+                    result[i] += matrix[i, j] * vector[j];
+            }
+
+            return result;
         }
 
         public bool IsEqual(IMatrix3X3 matrix, double precision)
@@ -60,6 +75,19 @@ namespace CodToolkit.Algebra
             }
 
             return areEqual;
+        }
+
+        public IMatrix3X3 Transpose()
+        {
+            var transposition = new Matrix3X3();
+
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 0; j < 3; j++)
+                    transposition[i, j] = this[j, i];
+            }
+
+            return transposition;
         }
 
         public IMatrix3X3 Inverse()
@@ -157,6 +185,16 @@ namespace CodToolkit.Algebra
                 r++;
             }
             return minor;
+        }
+
+        public static IMatrix3X3 operator *(Matrix3X3 matrix1, Matrix3X3 matrix2)
+        {
+            return Multiply(matrix1, matrix2);
+        }
+
+        public static IVector3 operator *(Matrix3X3 matrix1, Vector3 vector)
+        {
+            return Multiply(matrix1, vector);
         }
     }
 }

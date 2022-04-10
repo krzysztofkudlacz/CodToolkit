@@ -1,6 +1,13 @@
-﻿namespace CodToolkit.Algebra
+﻿using System.Collections.Generic;
+
+namespace CodToolkit.Algebra
 {
-    public class Vector3
+    public interface IVector3
+    {
+        double this[int index] { get; }
+    }
+
+    public class Vector3 : IVector3
     {
         private readonly double[] _vector;
 
