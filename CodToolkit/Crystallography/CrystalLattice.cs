@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using CodToolkit.Algebra;
+using CodToolkit.LaueClass;
 
 namespace CodToolkit.Crystallography
 {
@@ -13,6 +15,8 @@ namespace CodToolkit.Crystallography
 
         public IMatrix3X3 TransitionMatrix { get; }
 
+        public ILaueClass LaueClass { get; }
+
         public CrystalLattice(ICrystalLatticeParameters crystalLatticeParameters, 
             ISpaceGroupInfo spaceGroupInfo)
         {
@@ -20,6 +24,7 @@ namespace CodToolkit.Crystallography
             SpaceGroupInfo = spaceGroupInfo;
             TransitionMatrix = GetTransitionMatrix(crystalLatticeParameters, spaceGroupInfo);
             MetricTensor = Matrix3X3.Multiply(TransitionMatrix, TransitionMatrix.Transpose());
+            LaueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfo);
         }
 
         private static IMatrix3X3 GetTransitionMatrix(ICrystalLatticeParameters parameters, 
@@ -104,6 +109,42 @@ namespace CodToolkit.Crystallography
                 [2, 1] = 0.0,
                 [2, 2] = 1.0
             };
+        }
+
+        public IMillerIndices[] SymmetricalMillerIndices(IMillerIndices millerIndices)
+        {
+            var metricTensor = MetricTensor;
+            var recMetricTensor = MetricTensor.Inverse();
+
+            var hkl = new Vector3
+            {
+                [0] = millerIndices.H, 
+                [1] = millerIndices.K, 
+                [2] = millerIndices.L
+            };
+
+            var hklVector = Matrix3X3.Multiply(recMetricTensor, hkl);
+
+            var symEqHklList = new List<IMillerIndices>();
+
+            foreach (var group in LaueClass)
+            {
+                var vector = Matrix3X3.Multiply(group, hklVector);
+                var eqHkl = Matrix3X3.Multiply(metricTensor, vector);
+
+                var h = (int)Math.Round(eqHkl[0], 0);
+                var k = (int)Math.Round(eqHkl[1], 0);
+                var l = (int)Math.Round(eqHkl[2], 0);
+
+                var eqMi = new MillerIndices(h, k, l);
+
+                if (symEqHklList.Exists(m => m.Equals(eqMi, true)))
+                    continue;
+
+                symEqHklList.Add(eqMi);
+            }
+
+            return symEqHklList.ToArray();
         }
     }
 }

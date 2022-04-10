@@ -14,7 +14,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
+using CodToolkit.Algebra;
 using CodToolkit.Crystallography;
+using CodToolkit.LaueClass;
 
 namespace CodToolkit
 {
@@ -38,6 +41,8 @@ namespace CodToolkit
                 new StreamReader(stream ?? 
                                  throw new ArgumentException("Cannot read space group to Laue class map"));
 
+            var spaceGroupInfos = new List<SpaceGroupInfo>();
+
             while (!reader.EndOfStream)
             {
                 var input = reader.
@@ -46,18 +51,40 @@ namespace CodToolkit
 
                 if (input == null) continue;
 
-                var spaceGroupInfo = new SpaceGroupInfo
+                spaceGroupInfos.Add(new SpaceGroupInfo
                 {
                     LaueClass = input[0].Trim(),
                     Symbol = input[3].Trim(),
                     ExtendedSymbol = input[4].Trim()
-                };
-
-                if (spaceGroupInfo.Symbol.StartsWith("R"))
-                {
-
-                }
+                });
             }
+
+
+            var crystalLattice = new CrystalLattice(
+                new CrystalLatticeParameters
+                {
+                    ConstA = 1, 
+                    ConstB = 1, 
+                    ConstC = 1, 
+                    Alpha = 90,
+                    Beta = 90, 
+                    Gamma = 90
+                },
+                spaceGroupInfos.Last());
+
+            var h = crystalLattice.TransitionMatrix;
+            var ht = h.Transpose();
+            var g = ht.Inverse();
+            var gt = g.Transpose();
+
+            var mH = Matrix3X3.Multiply(h, ht);
+            var mG = Matrix3X3.Multiply(g, gt);
+
+            var equal = Matrix3X3.AreEqual(mH, mG.Inverse(), 0.0001);
+
+            var results = crystalLattice.SymmetricalMillerIndices(new MillerIndices(1, 0, 0));
+
+            var laueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfos.Last());
         }
     }
 }

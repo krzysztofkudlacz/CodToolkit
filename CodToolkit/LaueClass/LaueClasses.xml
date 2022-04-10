@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LaueClasses>
+	<LaueClass Symbol="-1">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+	</LaueClass>
+	<LaueClass Symbol="2/m">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="-1;0;0;0;1;0;0;0;-1" />
+	</LaueClass>
+	<LaueClass Symbol="mmm">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="1;0;0;0;-1;0;0;0;-1" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="-1;0;0;0;1;0;0;0;-1" />
+	</LaueClass>
+	<LaueClass Symbol="4/m">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;1;0;0;0;0;1" />
+	</LaueClass>
+	<LaueClass Symbol="4/mmm">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="1;0;0;0;-1;0;0;0;-1" />
+		<Rotation Matrix="0;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;-1;0;0;0;0;-1" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="-1;0;0;0;1;0;0;0;-1" />
+		<Rotation Matrix="0;-1;0;1;0;0;0;0;1" />
+		<Rotation Matrix="0;1;0;1;0;0;0;0;-1" />
+	</LaueClass>
+	<LaueClass Symbol="-3">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;1;-1;0;0;0;1" />
+	</LaueClass>
+	<LaueClass Symbol="-31m">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;-1;0;0;0;0;-1" />
+		<Rotation Matrix="-1;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;0;1;0;0;0;-1" />
+		<Rotation Matrix="0;-1;0;1;-1;0;0;0;1" />
+		<Rotation Matrix="1;0;0;1;-1;0;0;0;-1" />
+	</LaueClass>
+	<LaueClass Symbol="-3m1">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;1;-1;0;0;0;1" />
+		<Rotation Matrix="1;0;0;1;-1;0;0;0;1" />
+	</LaueClass>
+	<LaueClass Symbol="-3m">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;-1;0;0;0;0;-1" />
+		<Rotation Matrix="-1;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;0;1;0;0;0;-1" />
+		<Rotation Matrix="0;-1;0;1;-1;0;0;0;1" />
+		<Rotation Matrix="1;0;0;1;-1;0;0;0;-1" />
+	</LaueClass>
+	<LaueClass Symbol="6/m">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;1;0;-1;1;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;1;-1;0;0;0;1" />
+		<Rotation Matrix="1;-1;0;1;0;0;0;0;1" />
+	</LaueClass>
+	<LaueClass Symbol="6/mmm">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;-1;0;0;0;0;-1" />
+		<Rotation Matrix="0;1;0;-1;1;0;0;0;1" />
+		<Rotation Matrix="-1;0;0;-1;1;0;0;0;-1" />
+		<Rotation Matrix="-1;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="-1;1;0;0;1;0;0;0;-1" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="0;1;0;1;0;0;0;0;-1" />
+		<Rotation Matrix="0;-1;0;1;-1;0;0;0;1" />
+		<Rotation Matrix="1;0;0;1;-1;0;0;0;-1" />
+		<Rotation Matrix="1;-1;0;1;0;0;0;0;1" />
+		<Rotation Matrix="1;-1;0;0;-1;0;0;0;-1" />
+	</LaueClass>
+	<LaueClass Symbol="m3">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;1;0;0;0;1;1;0;0" />
+		<Rotation Matrix="0;0;1;1;0;0;0;1;0" />
+		<Rotation Matrix="1;0;0;0;-1;0;0;0;-1" />
+		<Rotation Matrix="0;1;0;0;0;-1;-1;0;0" />
+		<Rotation Matrix="0;0;1;-1;0;0;0;-1;0" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;0;0;-1;1;0;0" />
+		<Rotation Matrix="0;0;-1;-1;0;0;0;1;0" />
+		<Rotation Matrix="-1;0;0;0;1;0;0;0;-1" />
+		<Rotation Matrix="0;-1;0;0;0;1;-1;0;0" />
+		<Rotation Matrix="0;0;-1;1;0;0;0;-1;0" />
+	</LaueClass>
+	<LaueClass Symbol="m3m">
+		<Rotation Matrix="1;0;0;0;1;0;0;0;1" />
+		<Rotation Matrix="0;1;0;0;0;1;1;0;0" />
+		<Rotation Matrix="0;0;1;1;0;0;0;1;0" />
+		<Rotation Matrix="1;0;0;0;-1;0;0;0;-1" />
+		<Rotation Matrix="0;1;0;0;0;-1;-1;0;0" />
+		<Rotation Matrix="0;0;1;-1;0;0;0;-1;0" />
+		<Rotation Matrix="0;1;0;-1;0;0;0;0;1" />
+		<Rotation Matrix="0;0;1;0;-1;0;1;0;0" />
+		<Rotation Matrix="1;0;0;0;0;-1;0;1;0" />
+		<Rotation Matrix="0;-1;0;-1;0;0;0;0;-1" />
+		<Rotation Matrix="0;0;-1;0;-1;0;-1;0;0" />
+		<Rotation Matrix="-1;0;0;0;0;-1;0;-1;0" />
+		<Rotation Matrix="-1;0;0;0;-1;0;0;0;1" />
+		<Rotation Matrix="0;-1;0;0;0;-1;1;0;0" />
+		<Rotation Matrix="0;0;-1;-1;0;0;0;1;0" />
+		<Rotation Matrix="-1;0;0;0;1;0;0;0;-1" />
+		<Rotation Matrix="0;-1;0;0;0;1;-1;0;0" />
+		<Rotation Matrix="0;0;-1;1;0;0;0;-1;0" />
+		<Rotation Matrix="0;-1;0;1;0;0;0;0;1" />
+		<Rotation Matrix="0;0;-1;0;1;0;1;0;0" />
+		<Rotation Matrix="-1;0;0;0;0;1;0;1;0" />
+		<Rotation Matrix="0;1;0;1;0;0;0;0;-1" />
+		<Rotation Matrix="0;0;1;0;1;0;-1;0;0" />
+		<Rotation Matrix="1;0;0;0;0;1;0;-1;0" />
+	</LaueClass>
+</LaueClasses>
