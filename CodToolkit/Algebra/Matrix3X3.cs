@@ -2,7 +2,14 @@
 
 namespace CodToolkit.Algebra
 {
-    public class Matrix3X3
+    public interface IMatrix3X3
+    {
+        double this[int row, int column] { get; }
+
+        IMatrix3X3 Inverse();
+    }
+
+    public class Matrix3X3 : IMatrix3X3
     {
         private readonly double[,] _matrix;
 
@@ -22,7 +29,7 @@ namespace CodToolkit.Algebra
             set => _matrix[row, column] = value;
         }
 
-        public static Matrix3X3 Multiply(Matrix3X3 matrix1, Matrix3X3 matrix2)
+        public static IMatrix3X3 Multiply(Matrix3X3 matrix1, Matrix3X3 matrix2)
         {
             var matrix = new Matrix3X3();
 
@@ -38,7 +45,24 @@ namespace CodToolkit.Algebra
             return matrix;
         }
 
-        public Matrix3X3 Inverse()
+        public bool IsEqual(IMatrix3X3 matrix, double precision)
+        {
+            return AreEqual(this, matrix, precision);
+        }
+
+        public static bool AreEqual(IMatrix3X3 matrix1, IMatrix3X3 matrix2, double precision)
+        {
+            var areEqual = true;
+            for (var i = 0; i < 3; i++)
+            {
+                for (var j = 0; j < 3; j++)
+                    areEqual = areEqual && Math.Abs(matrix1[i, j] - matrix2[i, j]) < precision;
+            }
+
+            return areEqual;
+        }
+
+        public IMatrix3X3 Inverse()
         {
             var matrixToInverse = new double[3, 3];
 

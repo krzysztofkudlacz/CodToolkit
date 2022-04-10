@@ -1,5 +1,7 @@
 CodToolkit.sln.DotSettings.user
 CodToolkit/bin
 CodToolkit/obj
+CodToolkit.Tests/bin
+CodToolkit.Tests/obj
 packages/
 .vs/
