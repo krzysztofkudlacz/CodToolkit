@@ -30,7 +30,7 @@ namespace CodToolkit.Crystallography
                 TransitionMatrix, 
                 TransitionMatrix.Transpose());
             LaueClass = LaueClassCreator.CreateLaueClass(
-                spaceGroupInfo.LaueClass);
+                spaceGroupInfo.LaueClassSymbol);
         }
 
         private static IMatrix3X3 CreateTransitionMatrix(
@@ -45,7 +45,7 @@ namespace CodToolkit.Crystallography
             var beta = parameters.Beta;
             var gamma = parameters.Gamma;
 
-            if (spaceGroupInfo.Symbol.StartsWith("R"))
+            if (spaceGroupInfo.HallName.StartsWith("R"))
             {
                 var cos = Math.Cos(120.0 * Math.PI / 180.0);
                 var sin = Math.Sin(120.0 * Math.PI / 180.0);

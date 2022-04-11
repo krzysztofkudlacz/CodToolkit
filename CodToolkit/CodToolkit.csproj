@@ -76,6 +76,7 @@
     <Compile Include="Crystallography\SpaceGroupInfo.cs" />
     <Compile Include="LaueClass\ILaueClass.cs" />
     <Compile Include="LaueClass\LaueClassCreator.cs" />
+    <Compile Include="LaueClass\SpaceGroupToLaueClassMapper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

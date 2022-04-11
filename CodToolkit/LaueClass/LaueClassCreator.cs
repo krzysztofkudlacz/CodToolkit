@@ -75,7 +75,7 @@ namespace CodToolkit.LaueClass
             return rotations.ToArray();
         }
 
-        public class LaueClass : ILaueClass
+        private class LaueClass : ILaueClass
         {
             private readonly IReadOnlyList<IMatrix3X3> _rotations;
 

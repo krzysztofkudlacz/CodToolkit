@@ -2,19 +2,19 @@
 {
     public interface ISpaceGroupInfo
     {
-        string Symbol { get; }
+        string HallName { get; }
 
-        string ExtendedSymbol { get; }
+        string HermannMaguinName { get; }
 
-        string LaueClass { get; }
+        string LaueClassSymbol { get; }
     }
 
     public class SpaceGroupInfo : ISpaceGroupInfo
     {
-        public string Symbol { get; set; }
+        public string HallName { get; set; }
 
-        public string ExtendedSymbol { get; set; }
+        public string HermannMaguinName { get; set; }
 
-        public string LaueClass { get; set; }
+        public string LaueClassSymbol { get; set; }
     }
 }

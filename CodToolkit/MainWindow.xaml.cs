@@ -53,12 +53,11 @@ namespace CodToolkit
 
                 spaceGroupInfos.Add(new SpaceGroupInfo
                 {
-                    LaueClass = input[0].Trim(),
-                    Symbol = input[3].Trim(),
-                    ExtendedSymbol = input[4].Trim()
+                    LaueClassSymbol = input[0].Trim(),
+                    HallName = input[3].Trim(),
+                    HermannMaguinName = input[4].Trim()
                 });
             }
-
 
             var crystalLattice = new CrystalLattice(
                 new CrystalLatticeParameters
@@ -84,7 +83,7 @@ namespace CodToolkit
 
             var results = crystalLattice.SymmetricalMillerIndices(new MillerIndices(1, 0, 0));
 
-            var laueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfos.Last().LaueClass);
+            var laueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfos.Last().LaueClassSymbol);
 
             var isEqual = new MillerIndices(1, 1, 1).IsEqual(new MillerIndices(-1, -1, -1), true);
         }
