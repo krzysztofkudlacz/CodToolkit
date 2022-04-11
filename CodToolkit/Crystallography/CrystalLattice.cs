@@ -17,17 +17,24 @@ namespace CodToolkit.Crystallography
 
         public ILaueClass LaueClass { get; }
 
-        public CrystalLattice(ICrystalLatticeParameters crystalLatticeParameters, 
+        public CrystalLattice(
+            ICrystalLatticeParameters crystalLatticeParameters, 
             ISpaceGroupInfo spaceGroupInfo)
         {
             CrystalLatticeParameters = crystalLatticeParameters;
             SpaceGroupInfo = spaceGroupInfo;
-            TransitionMatrix = GetTransitionMatrix(crystalLatticeParameters, spaceGroupInfo);
-            MetricTensor = Matrix3X3.Multiply(TransitionMatrix, TransitionMatrix.Transpose());
-            LaueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfo);
+            TransitionMatrix = CreateTransitionMatrix(
+                crystalLatticeParameters, 
+                spaceGroupInfo);
+            MetricTensor = Matrix3X3.Multiply(
+                TransitionMatrix, 
+                TransitionMatrix.Transpose());
+            LaueClass = LaueClassCreator.CreateLaueClass(
+                spaceGroupInfo.LaueClass);
         }
 
-        private static IMatrix3X3 GetTransitionMatrix(ICrystalLatticeParameters parameters, 
+        private static IMatrix3X3 CreateTransitionMatrix(
+            ICrystalLatticeParameters parameters, 
             ISpaceGroupInfo spaceGroupInfo)
         {
             var aConst = parameters.ConstA;
@@ -95,7 +102,8 @@ namespace CodToolkit.Crystallography
             }
         }
 
-        private static IMatrix3X3 RotationAroundZAxis(double angle)
+        private static IMatrix3X3 RotationAroundZAxis(
+            double angle)
         {
             return new Matrix3X3
             {
@@ -111,7 +119,8 @@ namespace CodToolkit.Crystallography
             };
         }
 
-        public IMillerIndices[] SymmetricalMillerIndices(IMillerIndices millerIndices)
+        public IMillerIndices[] SymmetricalMillerIndices(
+            IMillerIndices millerIndices)
         {
             var metricTensor = MetricTensor;
             var recMetricTensor = MetricTensor.Inverse();
@@ -138,7 +147,7 @@ namespace CodToolkit.Crystallography
 
                 var eqMi = new MillerIndices(h, k, l);
 
-                if (symEqHklList.Exists(m => m.Equals(eqMi, true)))
+                if (symEqHklList.Exists(m => m.IsEqual(eqMi, true)))
                     continue;
 
                 symEqHklList.Add(eqMi);

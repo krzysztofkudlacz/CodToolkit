@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CodToolkit.Algebra
+﻿namespace CodToolkit.Algebra
 {
     public interface IVector3
     {
@@ -22,7 +20,9 @@ namespace CodToolkit.Algebra
             set => _vector[index] = value;
         }
 
-        public static Vector3 ScalarProduct(Vector3 vector1, Vector3 vector2)
+        public static Vector3 ScalarProduct(
+            Vector3 vector1, 
+            Vector3 vector2)
         {
             var vector = new Vector3();
 
@@ -32,7 +32,9 @@ namespace CodToolkit.Algebra
             return vector;
         }
 
-        public static Vector3 VectorProduct(Vector3 vector1, Vector3 vector2)
+        public static Vector3 VectorProduct(
+            Vector3 vector1, 
+            Vector3 vector2)
         {
             var vector = new Vector3
             {

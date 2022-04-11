@@ -31,7 +31,9 @@ namespace CodToolkit.Algebra
             set => _matrix[row, column] = value;
         }
 
-        public static IMatrix3X3 Multiply(IMatrix3X3 matrix1, IMatrix3X3 matrix2)
+        public static IMatrix3X3 Multiply(
+            IMatrix3X3 matrix1, 
+            IMatrix3X3 matrix2)
         {
             var matrix = new Matrix3X3();
 
@@ -47,7 +49,9 @@ namespace CodToolkit.Algebra
             return matrix;
         }
 
-        public static IVector3 Multiply(IMatrix3X3 matrix, IVector3 vector)
+        public static IVector3 Multiply(
+            IMatrix3X3 matrix, 
+            IVector3 vector)
         {
             var result = new Vector3();
 
@@ -60,12 +64,17 @@ namespace CodToolkit.Algebra
             return result;
         }
 
-        public bool IsEqual(IMatrix3X3 matrix, double precision)
+        public bool IsEqual(
+            IMatrix3X3 matrix, 
+            double precision)
         {
             return AreEqual(this, matrix, precision);
         }
 
-        public static bool AreEqual(IMatrix3X3 matrix1, IMatrix3X3 matrix2, double precision)
+        public static bool AreEqual(
+            IMatrix3X3 matrix1, 
+            IMatrix3X3 matrix2, 
+            double precision)
         {
             var areEqual = true;
             for (var i = 0; i < 3; i++)
@@ -103,7 +112,8 @@ namespace CodToolkit.Algebra
             return new Matrix3X3(InverseMatrix(matrixToInverse));
         }
 
-        private static double[,] InverseMatrix(double[,] matrix)
+        private static double[,] InverseMatrix(
+            double[,] matrix)
         {
             var order = matrix.GetLength(0);
             var determinant = MatrixDeterminant(matrix);
@@ -119,7 +129,8 @@ namespace CodToolkit.Algebra
             return inversion;
         }
 
-        private static double MatrixDeterminant(double[,] matrix)
+        private static double MatrixDeterminant(
+            double[,] matrix)
         {
             var order = matrix.GetLength(0);
             if (order == 1) { return matrix[0, 0]; }
@@ -133,7 +144,8 @@ namespace CodToolkit.Algebra
             return determinant;
         }
 
-        public static double[,] TransposeMatrix(double[,] matrix)
+        public static double[,] TransposeMatrix(
+            double[,] matrix)
         {
             var rowCount = matrix.GetLength(0);
             var columnCount = matrix.GetLength(1);
@@ -149,7 +161,8 @@ namespace CodToolkit.Algebra
             return transposition;
         }
 
-        private static double[,] MatrixAdjoint(double[,] matrix)
+        private static double[,] MatrixAdjoint(
+            double[,] matrix)
         {
             var order = matrix.GetLength(0);
             var adjoint = new double[order, order];
@@ -166,7 +179,10 @@ namespace CodToolkit.Algebra
             return adjoint;
         }
 
-        private static double[,] MatrixMinor(double[,] matrix, int row, int column)
+        private static double[,] MatrixMinor(
+            double[,] matrix, 
+            int row, 
+            int column)
         {
             var order = matrix.GetLength(0);
             var minor = new double[order - 1, order - 1];
@@ -187,12 +203,16 @@ namespace CodToolkit.Algebra
             return minor;
         }
 
-        public static IMatrix3X3 operator *(Matrix3X3 matrix1, Matrix3X3 matrix2)
+        public static IMatrix3X3 operator *(
+            Matrix3X3 matrix1, 
+            Matrix3X3 matrix2)
         {
             return Multiply(matrix1, matrix2);
         }
 
-        public static IVector3 operator *(Matrix3X3 matrix1, Vector3 vector)
+        public static IVector3 operator *(
+            Matrix3X3 matrix1, 
+            Vector3 vector)
         {
             return Multiply(matrix1, vector);
         }

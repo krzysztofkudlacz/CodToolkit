@@ -84,7 +84,9 @@ namespace CodToolkit
 
             var results = crystalLattice.SymmetricalMillerIndices(new MillerIndices(1, 0, 0));
 
-            var laueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfos.Last());
+            var laueClass = LaueClassCreator.CreateLaueClass(spaceGroupInfos.Last().LaueClass);
+
+            var isEqual = new MillerIndices(1, 1, 1).IsEqual(new MillerIndices(-1, -1, -1), true);
         }
     }
 }

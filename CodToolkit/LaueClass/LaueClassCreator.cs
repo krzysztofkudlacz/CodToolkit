@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Xml;
 using CodToolkit.Algebra;
-using CodToolkit.Crystallography;
 
 namespace CodToolkit.LaueClass
 {
@@ -13,11 +12,11 @@ namespace CodToolkit.LaueClass
     {
         private static IReadOnlyDictionary<string, double[][,]> _laueClassRotations;
 
-        public static ILaueClass CreateLaueClass(ISpaceGroupInfo spaceGroupInfo)
+        public static ILaueClass CreateLaueClass(string laueClass)
         {
             _laueClassRotations ??= GetLaueClassRotations();
 
-            return new LaueClass(_laueClassRotations[spaceGroupInfo.LaueClass]);
+            return new LaueClass(_laueClassRotations[laueClass]);
         }
 
         private static IReadOnlyDictionary<string, double[][,]> GetLaueClassRotations()
@@ -42,13 +41,13 @@ namespace CodToolkit.LaueClass
                 var node = laueClassNodes[i];
                 var symbol = node.Attributes?["Symbol"]?.Value;
 
-                laueClassRotations.Add(symbol ?? string.Empty, GetRotationMatrix(node));
+                laueClassRotations.Add(symbol ?? string.Empty, GetRotationMatrices(node));
             }
 
             return laueClassRotations;
         }
 
-        private static double[][,] GetRotationMatrix(XmlNode laueClass)
+        private static double[][,] GetRotationMatrices(XmlNode laueClass)
         {
             var rotationNodes = laueClass.ChildNodes;
             var rotations = new List<double[,]>();

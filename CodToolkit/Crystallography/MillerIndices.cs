@@ -1,18 +1,19 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace CodToolkit.Crystallography
 {
     public interface IMillerIndices
     {
-        int H { get; set; }
+        int H { get; }
 
-        int K { get; set; }
+        int K { get; }
 
-        int L { get; set; }
+        int L { get; }
 
         IMillerIndices FriedelPair { get; }
 
-        bool Equals(IMillerIndices millerIndices, bool includeFriedelPair = false);
+        bool IsEqual(IMillerIndices millerIndices, bool includeFriedelPair = false);
     }
 
     public class MillerIndices : IMillerIndices
@@ -25,10 +26,12 @@ namespace CodToolkit.Crystallography
 
         public MillerIndices()
         {
-            
         }
 
-        public MillerIndices(int h, int k, int l)
+        public MillerIndices(
+            int h, 
+            int k, 
+            int l)
         {
             H = h;
             K = k;
@@ -37,15 +40,36 @@ namespace CodToolkit.Crystallography
 
         public IMillerIndices FriedelPair => new MillerIndices(-H, -K, -L);
 
-        public bool Equals(IMillerIndices millerIndices, bool includeFriedelPair = false)
+        public bool IsEqual(
+            IMillerIndices millerIndices, 
+            bool asFriedelPair = false)
         {
-            return includeFriedelPair
-                ? Math.Abs(H - millerIndices.H) == 0 && Math.Abs(K - millerIndices.K) == 0 &&
-                  Math.Abs(L - millerIndices.L) == 0 ||
-                  Math.Abs(H + millerIndices.H) == 0 && Math.Abs(K + millerIndices.K) == 0 &&
-                  Math.Abs(L + millerIndices.L) == 0
-                : Math.Abs(H - millerIndices.H) == 0 && Math.Abs(K - millerIndices.K) == 0 &&
-                  Math.Abs(L - millerIndices.L) == 0;
+            return asFriedelPair
+                ? AreEqual(this, millerIndices) || 
+                  AreEqual(this, millerIndices.FriedelPair)
+                : AreEqual(this, millerIndices);
         }
+
+        public static bool AreEqual(
+            IMillerIndices millerIndices1,
+            IMillerIndices millerIndices2)
+        {
+            var list1 = AsList(millerIndices1);
+            var list2 = AsList(millerIndices2);
+
+            return list1.Zip(
+                    list2,
+                    (i1, i2) => i1 - i2)
+                .Sum() == 0;
+        }
+
+        private static IEnumerable<int> AsList(
+            IMillerIndices millerIndices) =>
+            new List<int>
+            {
+                millerIndices.H, 
+                millerIndices.K,
+                millerIndices.L
+            };
     }
 }
