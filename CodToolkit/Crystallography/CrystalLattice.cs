@@ -9,8 +9,6 @@ namespace CodToolkit.Crystallography
     {
         public ICrystalLatticeParameters CrystalLatticeParameters { get; }
 
-        public ISpaceGroupInfo SpaceGroupInfo { get; }
-
         public IMatrix3X3 MetricTensor { get; }
 
         public IMatrix3X3 TransitionMatrix { get; }
@@ -18,24 +16,25 @@ namespace CodToolkit.Crystallography
         public ILaueClass LaueClass { get; }
 
         public CrystalLattice(
-            ICrystalLatticeParameters crystalLatticeParameters, 
-            ISpaceGroupInfo spaceGroupInfo)
+            ICrystalLatticeParameters crystalLatticeParameters,
+            string hermannMaguinName)
         {
             CrystalLatticeParameters = crystalLatticeParameters;
-            SpaceGroupInfo = spaceGroupInfo;
             TransitionMatrix = CreateTransitionMatrix(
-                crystalLatticeParameters, 
-                spaceGroupInfo);
+                crystalLatticeParameters,
+                hermannMaguinName);
             MetricTensor = Matrix3X3.Multiply(
-                TransitionMatrix, 
+                TransitionMatrix,
                 TransitionMatrix.Transpose());
-            LaueClass = LaueClassCreator.CreateLaueClass(
-                spaceGroupInfo.LaueClassSymbol);
+            LaueClass = LaueClassCreator
+                .CreateLaueClass(
+                    SpaceGroupToLaueClassMapper
+                        .LaueClassSymbol(hermannMaguinName));
         }
 
         private static IMatrix3X3 CreateTransitionMatrix(
-            ICrystalLatticeParameters parameters, 
-            ISpaceGroupInfo spaceGroupInfo)
+            ICrystalLatticeParameters parameters,
+            string hermannMaguinName)
         {
             var aConst = parameters.ConstA;
             var bConst = parameters.ConstB;
@@ -45,7 +44,9 @@ namespace CodToolkit.Crystallography
             var beta = parameters.Beta;
             var gamma = parameters.Gamma;
 
-            if (spaceGroupInfo.HallName.StartsWith("R"))
+            if (hermannMaguinName
+                .ToUpper()
+                .Contains(":R"))
             {
                 var cos = Math.Cos(120.0 * Math.PI / 180.0);
                 var sin = Math.Sin(120.0 * Math.PI / 180.0);
@@ -147,7 +148,7 @@ namespace CodToolkit.Crystallography
 
                 var eqMi = new MillerIndices(h, k, l);
 
-                if (symEqHklList.Exists(m => m.IsEqual(eqMi, true)))
+                if (symEqHklList.Exists(m => m.AreEqual(eqMi, true)))
                     continue;
 
                 symEqHklList.Add(eqMi);

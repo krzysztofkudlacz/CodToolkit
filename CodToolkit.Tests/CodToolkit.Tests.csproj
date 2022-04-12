@@ -48,7 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algebra\MatrixTests.cs" />
-    <Compile Include="Algebra\VectorTests.cs" />
+    <Compile Include="Crystallography\MillerIndicesTests.cs" />
+    <Compile Include="LaueClass\LaueClassTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +61,7 @@
       <Name>CodToolkit</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

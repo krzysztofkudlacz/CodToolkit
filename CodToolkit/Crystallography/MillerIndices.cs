@@ -13,7 +13,9 @@ namespace CodToolkit.Crystallography
 
         IMillerIndices FriedelPair { get; }
 
-        bool IsEqual(IMillerIndices millerIndices, bool includeFriedelPair = false);
+        bool AreEqual(
+            IMillerIndices millerIndices, 
+            bool includeFriedelPair = false);
     }
 
     public class MillerIndices : IMillerIndices
@@ -40,7 +42,7 @@ namespace CodToolkit.Crystallography
 
         public IMillerIndices FriedelPair => new MillerIndices(-H, -K, -L);
 
-        public bool IsEqual(
+        public bool AreEqual(
             IMillerIndices millerIndices, 
             bool asFriedelPair = false)
         {

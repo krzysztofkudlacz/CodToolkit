@@ -3,6 +3,7 @@ using NUnit.Framework;
 
 namespace CodToolkit.Tests.Algebra
 {
+    [TestFixture]
     public class MatrixTests
     {
         [Test]

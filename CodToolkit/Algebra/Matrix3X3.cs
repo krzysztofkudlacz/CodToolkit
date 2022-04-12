@@ -133,14 +133,20 @@ namespace CodToolkit.Algebra
             double[,] matrix)
         {
             var order = matrix.GetLength(0);
-            if (order == 1) { return matrix[0, 0]; }
+            if (order == 1)
+            {
+                return matrix[0, 0];
+            }
 
             var determinant = 0.0;
             for (var i = 0; i < order; i++)
             {
-                determinant += matrix[0, i] * MatrixDeterminant(MatrixMinor(matrix, 0, i)) *
+                determinant += matrix[0, i] *
+                               MatrixDeterminant(
+                                   MatrixMinor(matrix, 0, i)) *
                                Math.Pow(-1.0, i);
             }
+
             return determinant;
         }
 
@@ -171,8 +177,9 @@ namespace CodToolkit.Algebra
             {
                 for (var j = 0; j < order; j++)
                 {
-                    adjoint[i, j] = Math.Pow(-1.0, i + j) * 
-                                    MatrixDeterminant(MatrixMinor(matrix, i, j));
+                    adjoint[i, j] = Math.Pow(-1.0, i + j) *
+                                    MatrixDeterminant(
+                                        MatrixMinor(matrix, i, j));
                 }
             }
 

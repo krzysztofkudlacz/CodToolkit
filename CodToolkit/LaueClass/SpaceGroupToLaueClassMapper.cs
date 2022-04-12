@@ -15,9 +15,16 @@ namespace CodToolkit.LaueClass
         public static string LaueClassSymbol(
             string spaceGroupHermannMaguinName)
         {
+            var hmName = spaceGroupHermannMaguinName
+                .ToUpper()
+                .Replace(" ", string.Empty)
+                .Replace(":R", string.Empty)
+                .Replace(":H", string.Empty);
+
             return SpaceGroupInfos()
                 .First(info =>
-                    info.HermannMaguinName == spaceGroupHermannMaguinName)
+                    info.HermannMaguinName == hmName ||
+                    info.HallName == hmName)
                 .LaueClassSymbol;
         }
 
@@ -31,7 +38,7 @@ namespace CodToolkit.LaueClass
 
             var resourcePath = assembly
                 .GetManifestResourceNames()
-                .Single(str => str.EndsWith("LaueClasses.xml"));
+                .Single(str => str.EndsWith("SpaceGroupToLaueMap.txt"));
 
             using var stream = assembly.GetManifestResourceStream(resourcePath);
             using var reader =
@@ -51,13 +58,19 @@ namespace CodToolkit.LaueClass
                 spaceGroupInfos.Add(new SpaceGroupInfo
                 {
                     LaueClassSymbol = input[0].Trim(),
-                    HallName = input[3].Trim(),
-                    HermannMaguinName = input[4].Trim()
+                    HallName = RemoveWhiteSpacesTrimToUpper(input[3].Trim()),
+                    HermannMaguinName = RemoveWhiteSpacesTrimToUpper(input[4].Trim())
                 });
             }
 
             _spaceGroupInfo = spaceGroupInfos;
             return _spaceGroupInfo;
+        }
+
+        private static string RemoveWhiteSpacesTrimToUpper(
+            string str)
+        {
+            return str.Replace(" ", string.Empty).Trim().ToUpper();
         }
     }
 }
