@@ -60,6 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="XrdProfile\Gaussian.cs" />
+    <Compile Include="XrdProfile\IXrdPeak.cs" />
+    <Compile Include="XrdProfile\Lorentzian.cs" />
+    <Compile Include="XrdProfile\PseudoVoigt.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -116,5 +120,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Cod\SpaceGroupToLaueMap.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
