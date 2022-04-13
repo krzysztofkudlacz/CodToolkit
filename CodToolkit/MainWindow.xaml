@@ -3,10 +3,91 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mde="clr-namespace:MaterialDesignExtensions.Controls;assembly=MaterialDesignExtensions"
         xmlns:local="clr-namespace:CodToolkit"
+        xmlns:cod="clr-namespace:CodToolkit.Cod"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:model="clr-namespace:MaterialDesignExtensions.Model;assembly=MaterialDesignExtensions"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Background="{DynamicResource MaterialDesignLightBackground}"
+        Foreground="{DynamicResource MaterialDesignBody}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        FontSize="13"
+        WindowStyle="SingleBorderWindow"
+        Title="COD Toolkit" Height="450" Width="800">
+
+
+    <Window.CommandBindings>
+        <CommandBinding Command="local:MainWindow.QueryCodCommand"
+                        Executed="QueryCodExecuted" CanExecute="CanQueryCod"/>
+    </Window.CommandBindings>
+
+    <materialDesign:DialogHost x:Name="MainDialogHost" 
+                               Identifier="MainDialogHost" 
+                               CloseOnClickAway="False" 
+                               HorizontalAlignment="Stretch" 
+                               VerticalAlignment="Stretch">
+
+        <Grid>
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <GridSplitter Grid.Row="1" 
+                              Grid.Column="0" 
+                              Grid.ColumnSpan="2"
+                              HorizontalAlignment="Stretch" 
+                              VerticalAlignment="Center"
+                              Height="5" 
+                              Background="Transparent" 
+                              BorderBrush="LightGray" 
+                              BorderThickness="0,1,0,1" 
+                              ShowsPreview="True"/>
+
+                <DataGrid Grid.Column="0" Grid.Row="2" x:Name="CodEntries">
+
+                    <!--<DataGrid.Columns>
+
+                        <DataGridTextColumn Header="#" 
+                                            Width="50"
+                                            IsReadOnly="True"/>
+
+                        <DataGridTextColumn Header="COD Id" 
+                                            Width="100"
+                                            IsReadOnly="True"/>
+
+                        <DataGridTextColumn Header="Formula" 
+                                            Width="100"
+                                            IsReadOnly="True"/>
+
+                        <DataGridTextColumn Header="Cell parameters" 
+                                            Width="100"
+                                            IsReadOnly="True"/>
+                    </DataGrid.Columns>-->
+
+                </DataGrid>
+
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <Button Content="Query" 
+                            Margin="5"
+                            Command="local:MainWindow.QueryCodCommand"/>
+                    <Button Content="Parameters" Margin="5" Visibility="Collapsed"/>
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+
+    </materialDesign:DialogHost>
+
 </Window>
