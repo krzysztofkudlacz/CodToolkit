@@ -11,7 +11,7 @@ namespace CodToolkit.Cod
     {
         public const string CodUri = "https://www.crystallography.net/cod/result";
 
-        public async Task<IReadOnlyList<CodEntryInfo>> QueryCod()
+        public async Task<IReadOnlyList<CodEntry>> QueryCod()
         {
             var codEntries = await GetEntriesInfo();
             for (var i = 0; i < codEntries.Count; i++)
@@ -20,7 +20,7 @@ namespace CodToolkit.Cod
             return codEntries;
         }
 
-        private async Task<IReadOnlyList<CodEntryInfo>> GetEntriesInfo()
+        private async Task<IReadOnlyList<CodEntry>> GetEntriesInfo()
         {
             var requiredElements = new List<string> { "Ca", "C", "O", "Mg" };
             var excludedElements = new List<string> { "H", "Al", "B", "Si" };
@@ -37,7 +37,7 @@ namespace CodToolkit.Cod
 
             codUrl.SetQueryParam("format", dataFormat);
 
-            var entries = await codUrl.GetAsync().ReceiveJson<List<CodEntryInfo>>();
+            var entries = await codUrl.GetAsync().ReceiveJson<List<CodEntry>>();
 
             return entries;
         }

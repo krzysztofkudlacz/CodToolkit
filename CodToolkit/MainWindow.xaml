@@ -54,7 +54,9 @@
                               BorderThickness="0,1,0,1" 
                               ShowsPreview="True"/>
 
-                <DataGrid Grid.Column="0" Grid.Row="2" x:Name="CodEntries">
+                <DataGrid Grid.Column="0" Grid.Row="2" x:Name="CodEntries"
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow">
 
                     <!--<DataGrid.Columns>
 
