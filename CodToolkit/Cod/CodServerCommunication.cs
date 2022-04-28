@@ -20,7 +20,7 @@ namespace CodToolkit.Cod
             return codEntries;
         }
 
-        private async Task<IReadOnlyList<CodEntry>> GetEntriesInfo()
+        private static async Task<IReadOnlyList<CodEntry>> GetEntriesInfo()
         {
             var requiredElements = new List<string> { "Ca", "C", "O", "Mg" };
             var excludedElements = new List<string> { "H", "Al", "B", "Si" };

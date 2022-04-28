@@ -39,6 +39,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BioCif.Core, Version=0.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BioCif.Core.0.9.0\lib\net45\BioCif.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Flurl, Version=3.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Flurl.3.0.4\lib\net472\Flurl.dll</HintPath>
     </Reference>
@@ -54,11 +57,15 @@
     <Reference Include="MaterialDesignThemes.Wpf, Version=3.1.3.1513, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.3.1.3\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="MathParser, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathosParser.2.0.0\lib\net471\MathParser.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -78,9 +85,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Cod\CodServerCommunication.cs" />
+    <Compile Include="CrystallographicInformationFile\CrystallographicInformationFile.cs" />
+    <Compile Include="Crystallography\AtomInUnitCell.cs" />
     <Compile Include="XrdProfile\Gaussian.cs" />
     <Compile Include="XrdProfile\IXrdPeak.cs" />
     <Compile Include="XrdProfile\Lorentzian.cs" />
+    <Compile Include="XrdProfile\XrdProfile.cs" />
     <Compile Include="XrdProfile\PseudoVoigt.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
