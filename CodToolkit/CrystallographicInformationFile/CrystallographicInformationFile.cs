@@ -33,6 +33,7 @@ namespace CodToolkit.CrystallographicInformationFile
 
         private CrystallographicInformationFile(Stream stream)
         {
+
             var block = CifParser.Parse(stream,
                     new CifParsingOptions
                     {
@@ -83,9 +84,11 @@ namespace CodToolkit.CrystallographicInformationFile
             var atomicBase = new List<AtomicPosition>();
 
             var atomicBaseTable = dataTables
-                .First(dt => dt.Headers.Contains(new DataName("atom_site_label")));
+                .First(dt => dt.Headers.Contains(new DataName("atom_site_label")) ||
+                             dt.Headers.Contains(new DataName("_atom_site_type_symbol")));
 
             var siteIndex = GetColumnIndex(atomicBaseTable, "atom_site_label");
+            var typeIndex = GetColumnIndex(atomicBaseTable, "atom_site_label");
             var xIndex = GetColumnIndex(atomicBaseTable, "atom_site_fract_x");
             var yIndex = GetColumnIndex(atomicBaseTable, "atom_site_fract_y");
             var zIndex = GetColumnIndex(atomicBaseTable, "atom_site_fract_z");

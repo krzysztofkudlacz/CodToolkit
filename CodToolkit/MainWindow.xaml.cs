@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
-using BioCif.Core.Parsing;
 using CodToolkit.Cod;
-using CodToolkit.CrystallographicInformationFile;
-using CodToolkit.XrdProfile;
-using Flurl;
-using Flurl.Http;
+using CodToolkit.ModelView;
+using CodToolkit.Xrd;
 
 namespace CodToolkit
 {
@@ -22,28 +11,29 @@ namespace CodToolkit
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static readonly RoutedCommand QueryCodCommand = new RoutedCommand();
-
-        private readonly CodServerCommunication _codServerCommunication;
+        //public static readonly RoutedCommand QueryCodCommand = new RoutedCommand();
+        //private readonly CodServerCommunication _codServerCommunication;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            /*
-            _codServerCommunication = new CodServerCommunication();
-
-            var xrdProfile = new XrdProfile.XrdProfile(new List<IXrdPeak> {new Gaussian(5, 1, 1)});
-            var x = new double[100];
-            for (var i = 0; i < x.Length; i++)
-            {
-                x[i] = i;
-            }
-
-            xrdProfile.Values(x);
-            */
+            AtomicFormFactorModelView = new AtomicFormFactorModelView();
         }
 
+        public static readonly DependencyProperty AtomicFormFactorModelViewProperty = DependencyProperty.Register(
+            nameof(AtomicFormFactorModelView), 
+            typeof(AtomicFormFactorModelView),
+            typeof(MainWindow), 
+            new PropertyMetadata(default(AtomicFormFactorModelView)));
+
+        public AtomicFormFactorModelView AtomicFormFactorModelView
+        {
+            get => (AtomicFormFactorModelView) GetValue(AtomicFormFactorModelViewProperty);
+            set => SetValue(AtomicFormFactorModelViewProperty, value);
+        }
+
+        /*
         private async void QueryCodExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             IndicateState(Cursors.Wait);
@@ -79,7 +69,6 @@ namespace CodToolkit
                 entry.Formula,
                 entry.SpaceGroup
             });
-            */
 
             IndicateState(null);
         }
@@ -96,5 +85,6 @@ namespace CodToolkit
                 Mouse.OverrideCursor = cursor;
             });
         }
+        */
     }
 }
