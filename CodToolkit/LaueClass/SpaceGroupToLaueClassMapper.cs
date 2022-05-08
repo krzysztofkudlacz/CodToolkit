@@ -22,10 +22,10 @@ namespace CodToolkit.LaueClass
                 .Replace(":H", string.Empty);
 
             return SpaceGroupInfos()
-                .First(info =>
+                .FirstOrDefault(info =>
                     info.HermannMaguinName == hmName ||
                     info.HallName == hmName)
-                .LaueClassSymbol;
+                ?.LaueClassSymbol;
         }
 
         private static IEnumerable<ISpaceGroupInfo> 

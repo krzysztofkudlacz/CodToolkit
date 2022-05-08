@@ -19,18 +19,13 @@
         Title="COD Toolkit" Height="450" Width="800">
 
 
-    <!--<Window.CommandBindings>
-        <CommandBinding Command="local:MainWindow.QueryCodCommand"
-                        Executed="QueryCodExecuted" CanExecute="CanQueryCod"/>
-    </Window.CommandBindings>-->
-
     <materialDesign:DialogHost x:Name="MainDialogHost" 
                                Identifier="MainDialogHost" 
                                CloseOnClickAway="False" 
                                HorizontalAlignment="Stretch" 
                                VerticalAlignment="Stretch">
 
-        <Grid Margin="10">
+        <!--<Grid Margin="10">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -121,6 +116,7 @@
                       Width="100"
                       Margin="10"
                       Padding="5"
+                      IsReadOnly="True"
                       ItemsSource="{
                 Binding ElementName=CodToolkitWindow, 
                 Path=AtomicFormFactorModelView.Elements}"
@@ -131,9 +127,9 @@
                 UpdateSourceTrigger=PropertyChanged}">
 
             </ComboBox>
-        </Grid>
+        </Grid>-->
 
-        <!--<Grid>
+        <Grid>
 
             <Grid>
 
@@ -159,22 +155,73 @@
                               BorderThickness="0,1,0,1" 
                               ShowsPreview="True"/>
 
-                <DataGrid Grid.Column="0" Grid.Row="2" x:Name="CodEntries"
+                <DataGrid Grid.Column="0" 
+                          Grid.Row="2" 
+                          x:Name="CodEntries"
+                          AutoGenerateColumns="False"
                           SelectionMode="Single"
-                          SelectionUnit="FullRow">
+                          SelectionUnit="FullRow"
+                          ItemsSource="{Binding 
+                    ElementName=CodToolkitWindow, 
+                    Path=CodModelView.CodEntries,
+                    Mode=OneWay, 
+                    UpdateSourceTrigger=PropertyChanged}">
 
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="#"
+                                            IsReadOnly="True"
+                                            Binding="{Binding NumberInCollection}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Id"
+                                            IsReadOnly="True"
+                                            Binding="{Binding FileId}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Cell parameters"
+                                            IsReadOnly="True"
+                                            Binding="{Binding CellParameters}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Cell parameters"
+                                            IsReadOnly="True"
+                                            Binding="{Binding CellParameters}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Space group"
+                                            IsReadOnly="True"
+                                            Binding="{Binding SpaceGroup}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Common name"
+                                            IsReadOnly="True"
+                                            Binding="{Binding CommonName}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Mineral"
+                                            IsReadOnly="True"
+                                            Binding="{Binding Mineral}">
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Header="Formula"
+                                            IsReadOnly="True"
+                                            Binding="{Binding Formula}">
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
                 </DataGrid>
 
                 <StackPanel Grid.Column="1" Grid.Row="2">
-                    <Button Content="Query" 
+                    <Button Content="Search" 
                             Margin="5"
-                            Command="local:MainWindow.QueryCodCommand"/>
+                            Command="{x:Static local:App.ShowCodDialogCommand}"/>
                     <Button Content="Parameters" Margin="5" Visibility="Collapsed"/>
                 </StackPanel>
 
             </Grid>
 
-        </Grid>-->
+        </Grid>
 
     </materialDesign:DialogHost>
 

@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows.Media;
 using CodToolkit.Xrd;
 using LiveCharts;
@@ -12,7 +14,7 @@ namespace CodToolkit.ModelView
 {
     public class AtomicFormFactorModelView : INotifyPropertyChanged
     {
-        private const int NumberOfPoints = 1000;
+        private const int NumberOfPoints = 1024;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

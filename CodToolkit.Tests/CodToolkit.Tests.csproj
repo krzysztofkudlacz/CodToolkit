@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algebra\MatrixTests.cs" />
+    <Compile Include="Cod\CodSearchParametersTests.cs" />
     <Compile Include="Crystallography\MillerIndicesTests.cs" />
     <Compile Include="LaueClass\LaueClassTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
