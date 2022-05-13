@@ -165,6 +165,11 @@
                     ElementName=CodToolkitWindow, 
                     Path=CodModelView.CodEntries,
                     Mode=OneWay, 
+                    UpdateSourceTrigger=PropertyChanged}"
+                          SelectedItem="{Binding
+                    ElementName=CodToolkitWindow, 
+                    Path=CodModelView.SelectedCodEntry,
+                    Mode=TwoWay, 
                     UpdateSourceTrigger=PropertyChanged}">
 
                     <DataGrid.Columns>
@@ -213,10 +218,17 @@
                 </DataGrid>
 
                 <StackPanel Grid.Column="1" Grid.Row="2">
+                    
                     <Button Content="Search" 
                             Margin="5"
                             Command="{x:Static local:App.ShowCodDialogCommand}"/>
                     <Button Content="Parameters" Margin="5" Visibility="Collapsed"/>
+
+                    <Button Content="Download" 
+                            Margin="5"
+                            Command="{x:Static local:App.DownloadCifCommand}"/>
+                    <Button Content="Parameters" Margin="5" Visibility="Collapsed"/>
+
                 </StackPanel>
 
             </Grid>

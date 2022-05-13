@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace CodToolkit.CrystallographicInformationFile
     {
         private class AtomicPosition
         {
-            public string Label { get; set; }
+            public string[] Labels { get; set; }
 
             public double X { get; set; }
 
@@ -24,15 +25,18 @@ namespace CodToolkit.CrystallographicInformationFile
             public double Occupancy { get; set; }
         }
 
-        public ICrystalLatticeParameters Parameters { get; set; }
+        public ICrystalLatticeParameters Parameters { get; }
+
+        public string[] SpaceGroupSymbols { get; }
 
         public IReadOnlyList<IAtomInUnitCell> AtomsInUnitCell { get; }
 
-        public static CrystallographicInformationFile Parse(MemoryStream stream) =>
-            new CrystallographicInformationFile(stream);
+        public static CrystallographicInformationFile Parse(string cifText) =>
+            new CrystallographicInformationFile(cifText);
 
-        private CrystallographicInformationFile(Stream stream)
+        private CrystallographicInformationFile(string cifText)
         {
+            var stream = new MemoryStream(Encoding.Unicode.GetBytes(cifText));
 
             var block = CifParser.Parse(stream,
                     new CifParsingOptions
@@ -40,6 +44,8 @@ namespace CodToolkit.CrystallographicInformationFile
                         FileEncoding = Encoding.Unicode
                     })
                 .FirstBlock;
+
+            SpaceGroupSymbols = GetSpaceGroupSymbols(block);
 
             Parameters = GetParameters(block);
 
@@ -50,7 +56,8 @@ namespace CodToolkit.CrystallographicInformationFile
             var symmetryEquivalentPositions = dataTables
                 .First(dt => dt.Headers.Contains(new DataName("symmetry_equiv_pos_as_xyz")))
                 .Rows
-                .SelectMany(row => row.Select(r => r.GetStringValue()));
+                .SelectMany(row => row.Select(r => r.GetStringValue()))
+                .ToList();
 
             AtomsInUnitCell = GetAtomsInUnitCell(
                 atomicBase, 
@@ -78,17 +85,44 @@ namespace CodToolkit.CrystallographicInformationFile
             };
         }
 
+        private static string[] GetSpaceGroupSymbols(
+            DataBlock block)
+        {
+            var labels = new List<string>();
+
+            if (block.TryGet("symmetry_space_group_name_Hall", out IDataValue hallName))
+                labels.Add(hallName.GetStringValue());
+
+            if (block.TryGet("symmetry_space_group_name_H-M", out IDataValue hermannMaguin))
+                labels.Add(hermannMaguin.GetStringValue());
+
+            return labels.ToArray();
+        }
+
         private static IEnumerable<AtomicPosition> GetAtomicBase(
             IEnumerable<DataTable> dataTables)
         {
             var atomicBase = new List<AtomicPosition>();
 
-            var atomicBaseTable = dataTables
-                .First(dt => dt.Headers.Contains(new DataName("atom_site_label")) ||
-                             dt.Headers.Contains(new DataName("_atom_site_type_symbol")));
+            var searchedLabels = new List<string>
+            {
+                "atom_site_label",
+                "atom_site_type_symbol",
+                "atom_type_symbol"
+            };
 
-            var siteIndex = GetColumnIndex(atomicBaseTable, "atom_site_label");
-            var typeIndex = GetColumnIndex(atomicBaseTable, "atom_site_label");
+            var atomicBaseTable = dataTables
+                .First(dt => dt
+                    .Headers
+                    .Select(h => h.Tag)
+                    .Any(h => searchedLabels
+                        .Contains(h)));
+
+            var atomicLabelIndices = searchedLabels
+                .Select(l => GetColumnIndex(atomicBaseTable, l))
+                .Where(i => i > -1)
+                .ToList();
+
             var xIndex = GetColumnIndex(atomicBaseTable, "atom_site_fract_x");
             var yIndex = GetColumnIndex(atomicBaseTable, "atom_site_fract_y");
             var zIndex = GetColumnIndex(atomicBaseTable, "atom_site_fract_z");
@@ -98,11 +132,13 @@ namespace CodToolkit.CrystallographicInformationFile
             {
                 atomicBase.Add(new AtomicPosition
                 {
-                    Label = atomicBaseTable.Rows[r][siteIndex].GetStringValue(),
+                    Labels = atomicLabelIndices.Select(i => atomicBaseTable.Rows[r][i].GetStringValue()).ToArray(),
                     X = atomicBaseTable.Rows[r][xIndex].GetDoubleValue().Cast().ToFractionalValue(),
                     Y = atomicBaseTable.Rows[r][yIndex].GetDoubleValue().Cast().ToFractionalValue(),
                     Z = atomicBaseTable.Rows[r][zIndex].GetDoubleValue().Cast().ToFractionalValue(),
-                    Occupancy = atomicBaseTable.Rows[r][occupancyIndex].GetDoubleValue().Cast(),
+                    Occupancy = occupancyIndex > -1
+                        ? atomicBaseTable.Rows[r][occupancyIndex].GetDoubleValue().Cast()
+                        : 1
                 });
             }
 
@@ -111,21 +147,24 @@ namespace CodToolkit.CrystallographicInformationFile
 
         private static IReadOnlyList<IAtomInUnitCell> GetAtomsInUnitCell(
             IEnumerable<AtomicPosition> atomicBase, 
-            IEnumerable<string> symmetryOperators)
+            IReadOnlyCollection<string> symmetryOperators)
         {
-            var atomsInUnitCell = new List<IAtomInUnitCell>();
+            const double tolerance = 1e-6;
 
-            var symmetricSites = symmetryOperators.Select(
-                    o => o.Split(",".ToCharArray())
-                        .Select(s => s.Trim()).ToArray())
-                .ToList();
+            var atomsInUnitCell = new List<IAtomInUnitCell>();
 
             foreach (var atom in atomicBase)
             {
                 var parser = new Mathos.Parser.MathParser();
-                parser.LocalVariables.Add("x", atom.X);
-                parser.LocalVariables.Add("y", atom.Y);
-                parser.LocalVariables.Add("z", atom.Z);
+
+                var symmetricSites = symmetryOperators.Select(
+                    s => s
+                        .Replace("x", atom.X.AsString())
+                        .Replace("y", atom.Y.AsString())
+                        .Replace("z", atom.Z.AsString())
+                        .Split(",".ToCharArray())
+                        .Select(e => e.Trim())
+                        .ToArray());
 
                 List<(double x, double y, double z)> positions =
                     symmetricSites.Select(
@@ -134,8 +173,6 @@ namespace CodToolkit.CrystallographicInformationFile
                                 parser.Parse(s[1]).ToFractionalValue(),
                                 parser.Parse(s[2]).ToFractionalValue()))
                         .ToList();
-
-                const double tolerance = 1e-6;
 
                 var uniquePositions = new List<(double x, double y, double z)>();
 
@@ -149,7 +186,7 @@ namespace CodToolkit.CrystallographicInformationFile
 
                 atomsInUnitCell.Add(new AtomInUnitCell
                 {
-                    Label = atom.Label, 
+                    Labels = atom.Labels, 
                     Occupancy = atom.Occupancy,
                     Positions = uniquePositions
                 });
@@ -158,7 +195,9 @@ namespace CodToolkit.CrystallographicInformationFile
             return atomsInUnitCell;
         }
 
-        private static int GetColumnIndex(DataTable dataTable, string header)
+        private static int GetColumnIndex(
+            DataTable dataTable, 
+            string header)
         {
             var headers = dataTable.Headers;
             for (var i = 0; i < headers.Count; i++)
@@ -195,5 +234,7 @@ namespace CodToolkit.CrystallographicInformationFile
 
             return value;
         }
+
+        public static string AsString(this double value) => value.ToString(CultureInfo.InvariantCulture);
     }
 }

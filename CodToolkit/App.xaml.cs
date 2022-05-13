@@ -18,7 +18,9 @@ namespace CodToolkit
         public static ICommand CloseCodDialogCommand { get; private set; }
 
         public static ICommand SearchCodCommand { get; private set; }
-        
+
+        public static ICommand DownloadCifCommand { get; private set; }
+
         private readonly CodModelView _codModelView;
 
         private readonly CodSearchParameters _searchParameters;
@@ -39,6 +41,10 @@ namespace CodToolkit
             SearchCodCommand = new SearchCodCommand(
                 () => true,
                 StartCodSearch);
+
+            DownloadCifCommand = new DownloadCifCommand(
+                () => _codModelView.SelectedCodEntry != null,
+                _codModelView.DownloadCif);
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e)
@@ -60,11 +66,13 @@ namespace CodToolkit
             var result = await DialogHost.Show(control);
             if ((bool?)result == true)
             {
+                IndicateState(Cursors.Wait);
                 _codModelView.SearchCod(_searchParameters);
+                IndicateState(null);
             }
         }
 
-        private void StartCodSearch()
+        private static void StartCodSearch()
         {
             DialogHost.CloseDialogCommand.Execute(true, null);
         }
@@ -72,6 +80,14 @@ namespace CodToolkit
         private static void CancelCodSearchDialog()
         {
             DialogHost.CloseDialogCommand.Execute(false, null);
+        }
+
+        private static void IndicateState(Cursor cursor)
+        {
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Mouse.OverrideCursor = cursor;
+            });
         }
     }
 }

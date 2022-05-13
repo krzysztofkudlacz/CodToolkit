@@ -4,7 +4,7 @@ namespace CodToolkit.Crystallography
 {
     public interface IAtomInUnitCell
     {
-        string Label { get; }
+        string[] Labels { get; }
 
         double Occupancy { get; }
 
@@ -13,7 +13,7 @@ namespace CodToolkit.Crystallography
 
     public class AtomInUnitCell : IAtomInUnitCell
     {
-        public string Label { get; set; }
+        public string[] Labels { get; set; }
 
         public double Occupancy { get; set; }
 

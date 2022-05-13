@@ -1,16 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Input;
 using CodToolkit.Cod;
 
 namespace CodToolkit.ModelView
 {
     public class CodModelView : INotifyPropertyChanged
     {
-        private const string CodUri = "https://www.crystallography.net/cod/result";
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
@@ -33,10 +29,20 @@ namespace CodToolkit.ModelView
             }
         }
 
+        private CodEntry _selectedCodEntry;
+
+        public CodEntry SelectedCodEntry
+        {
+            get => _selectedCodEntry;
+            set
+            {
+                _selectedCodEntry = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public async void SearchCod(CodSearchParameters parameters)
         {
-            IndicateState(Cursors.Wait);
-
             CodEntries?.Clear();
 
             var results = await CodServerCommunication.SearchCod(parameters);
@@ -48,21 +54,14 @@ namespace CodToolkit.ModelView
             }
 
             CodEntries = codEntries;
-
-            IndicateState(null);
         }
 
-        private static void IndicateState(Cursor cursor)
+        public async void DownloadCif()
         {
-            Application.Current.Dispatcher.Invoke(() =>
-            {
-                Mouse.OverrideCursor = cursor;
-            });
-        }
+            var fileId = SelectedCodEntry?.FileId;
+            if (string.IsNullOrEmpty(fileId)) return;
 
-        public void CalculateXrdProfile()
-        {
-
+            var results = await CodServerCommunication.DownloadCif(fileId);
         }
 
         #endregion

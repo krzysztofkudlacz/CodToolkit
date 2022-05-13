@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
@@ -13,7 +16,7 @@ namespace CodToolkit.Cod
         public static async Task<IReadOnlyList<CodEntry>> SearchCod(
             CodSearchParameters parameters)
         {
-            var requiredElements = !string.IsNullOrEmpty(parameters.RequiredElements)
+            var requiredElements = string.IsNullOrEmpty(parameters.RequiredElements)
                 ? new List<string>()
                 : parameters
                     .RequiredElements
@@ -21,7 +24,7 @@ namespace CodToolkit.Cod
                     .Select(e => e.Trim())
                     .ToList();
 
-            var excludedElements = !string.IsNullOrEmpty(parameters.ExcludedElements)
+            var excludedElements = string.IsNullOrEmpty(parameters.ExcludedElements)
                 ? new List<string>()
                 : parameters
                     .ExcludedElements
@@ -71,6 +74,30 @@ namespace CodToolkit.Cod
                 entries[i].NumberInCollection = i + 1;
 
             return entries;
+        }
+
+        public static async Task<CrystallographicInformationFile.CrystallographicInformationFile> DownloadCif(
+            string fileId)
+        {
+            var codUrl = new Url("https://www.crystallography.net/cod/result");
+            codUrl.SetQueryParam("id", fileId);
+            codUrl.SetQueryParam("format", "zip");
+
+            var zippedBuffer = await codUrl.GetAsync().ReceiveBytes();
+
+            var entry = new ZipArchive(
+                    new MemoryStream(zippedBuffer))
+                .Entries
+                .First();
+
+            var memoryStream = new MemoryStream();
+            await entry.Open().CopyToAsync(memoryStream);
+
+            var cifText = Encoding.Default.GetString(memoryStream.ToArray());
+
+            return CrystallographicInformationFile
+                .CrystallographicInformationFile
+                .Parse(cifText);
         }
     }
 }

@@ -97,6 +97,7 @@
     <Compile Include="ModelView\AtomicFormFactorModelView.cs" />
     <Compile Include="ModelView\CodModelView.cs" />
     <Compile Include="ModelView\Commands\CloseSearchCodDialogCommand.cs" />
+    <Compile Include="ModelView\Commands\DownloadCifCommand.cs" />
     <Compile Include="ModelView\Commands\SearchCodCommand.cs" />
     <Compile Include="ModelView\Commands\ShowSearchCodDialogCommand.cs" />
     <Compile Include="View\SearchCodConditions.xaml.cs">

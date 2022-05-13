@@ -16,7 +16,7 @@ namespace CodToolkit.Cod
         public CodSearchParameters()
         {
             Text = "dolomite";
-            RequiredElements = "Ca, Mq, C, O";
+            RequiredElements = "Ca, Mg, C, O";
             ExcludedElements = "H, Al, B, Si";
             MinA = "4.8";
             MaxA = "5";
