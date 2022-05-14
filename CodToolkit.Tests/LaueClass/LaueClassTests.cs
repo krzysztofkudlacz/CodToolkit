@@ -14,7 +14,7 @@ namespace CodToolkit.Tests.LaueClass
         {
             Assert.AreEqual(
                 SpaceGroupToLaueClassMapper
-                    .LaueClassSymbol(hallName), 
+                    .LaueClassSymbol(new[] {hallName}),
                 lauClassSymbol);
         }
     }

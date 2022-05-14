@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CodToolkit.Crystallography
@@ -25,10 +26,6 @@ namespace CodToolkit.Crystallography
         public int K { get; set; }
 
         public int L { get; set; }
-
-        public MillerIndices()
-        {
-        }
 
         public MillerIndices(
             int h, 
@@ -61,7 +58,7 @@ namespace CodToolkit.Crystallography
 
             return list1.Zip(
                     list2,
-                    (i1, i2) => i1 - i2)
+                    (i1, i2) => Math.Abs(i1 - i2))
                 .Sum() == 0;
         }
 

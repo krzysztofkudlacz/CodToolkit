@@ -13,18 +13,24 @@ namespace CodToolkit.LaueClass
             _spaceGroupInfo;
 
         public static string LaueClassSymbol(
-            string spaceGroupHermannMaguinName)
+            string[] spaceGroupSymbolCandidates)
         {
-            var hmName = spaceGroupHermannMaguinName
-                .ToUpper()
-                .Replace(" ", string.Empty)
-                .Replace(":R", string.Empty)
-                .Replace(":H", string.Empty);
+            var sgSymbols = spaceGroupSymbolCandidates
+                .Select(
+                    s => s
+                        .ToUpper()
+                        .Replace(" ", string.Empty)
+                        .Replace(":R", string.Empty)
+                        .Replace(":H", string.Empty))
+                .ToList();
 
             return SpaceGroupInfos()
-                .FirstOrDefault(info =>
-                    info.HermannMaguinName == hmName ||
-                    info.HallName == hmName)
+                .FirstOrDefault(
+                    info => sgSymbols
+                        .Any(
+                            e =>
+                                e == info.HermannMaguinName ||
+                                e == info.HallName))
                 ?.LaueClassSymbol;
         }
 

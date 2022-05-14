@@ -94,6 +94,7 @@
     <Compile Include="Cod\CodServerCommunication.cs" />
     <Compile Include="CrystallographicInformationFile\CrystallographicInformationFile.cs" />
     <Compile Include="Crystallography\AtomInUnitCell.cs" />
+    <Compile Include="Extensions\CollectionExtensions.cs" />
     <Compile Include="ModelView\AtomicFormFactorModelView.cs" />
     <Compile Include="ModelView\CodModelView.cs" />
     <Compile Include="ModelView\Commands\CloseSearchCodDialogCommand.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="XrdProfile\XrdProfile.cs" />
     <Compile Include="XrdProfile\PseudoVoigt.cs" />
     <Compile Include="Xrd\AtomicFormFactor.cs" />
+    <Compile Include="Xrd\XrdCalculations.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,17 +166,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LaueClass\LaueClasses.xml" />
+    <EmbeddedResource Include="Resources\LaueClasses.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Crystallography\SpaceGroupToLaueMap.txt" />
+    <EmbeddedResource Include="Resources\SpaceGroupToLaueMap.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Xrd\AtomicFormFactors.txt" />
+    <EmbeddedResource Include="Resources\AtomicFormFactors.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Crystallography\NeutralAtoms.txt" />
+    <Resource Include="Resources\NeutralAtoms.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.3\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

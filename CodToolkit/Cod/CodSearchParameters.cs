@@ -16,14 +16,14 @@ namespace CodToolkit.Cod
         public CodSearchParameters()
         {
             Text = "dolomite";
-            RequiredElements = "Ca, Mg, C, O";
-            ExcludedElements = "H, Al, B, Si";
-            MinA = "4.8";
-            MaxA = "5";
-            MinB = "4.8";
-            MaxB = "5";
-            MinC = "15";
-            MaxC = "16";
+            RequiredElements = "Al"; // "Ca, Mg, C, O";
+            ExcludedElements = "H, Cu, B, Si";
+            MinA = "4.04"; // "4.8";
+            MaxA = "4.06"; // "5";
+            MinB = "4.04"; // "4.8";
+            MaxB = "4.06"; //  "5";
+            MinC = "4.04"; // "15";
+            MaxC = "4.06"; // "16";
         }
 
         private string _text;

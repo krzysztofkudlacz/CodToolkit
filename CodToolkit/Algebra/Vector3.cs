@@ -1,8 +1,12 @@
-﻿namespace CodToolkit.Algebra
+﻿using System;
+
+namespace CodToolkit.Algebra
 {
     public interface IVector3
     {
         double this[int index] { get; }
+
+        double Norm { get; }
     }
 
     public class Vector3 : IVector3
@@ -20,21 +24,21 @@
             set => _vector[index] = value;
         }
 
-        public static Vector3 ScalarProduct(
-            Vector3 vector1, 
-            Vector3 vector2)
+        public static double ScalarProduct(
+            IVector3 vector1, 
+            IVector3 vector2)
         {
-            var vector = new Vector3();
+            var sp = 0.0;
 
             for (var i = 0; i < 3; i++)
-                vector[i] = vector1[i] * vector2[i];
+                sp += vector1[i] * vector2[i];
 
-            return vector;
+            return sp;
         }
 
-        public static Vector3 VectorProduct(
-            Vector3 vector1, 
-            Vector3 vector2)
+        public static IVector3 VectorProduct(
+            IVector3 vector1, 
+            IVector3 vector2)
         {
             var vector = new Vector3
             {
@@ -45,5 +49,10 @@
 
             return vector;
         }
+
+        public double Norm => Math.Sqrt(
+            Math.Pow(this[0], 2) + 
+            Math.Pow(this[1], 2) + 
+            Math.Pow(this[2], 2));
     }
 }

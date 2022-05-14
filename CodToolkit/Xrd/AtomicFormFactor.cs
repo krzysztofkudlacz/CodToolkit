@@ -41,6 +41,19 @@ namespace CodToolkit.Xrd
             return _atomicFormFactors.Keys;
         }
 
+        public static string MapElements(string[] candidates)
+        {
+            var elements = GetElements();
+
+            var element = elements
+                .FirstOrDefault(
+                    e => candidates.Any(c => c == e || e.Contains(c) || c.Contains(e)));
+
+            if (!string.IsNullOrEmpty(element)) return element;
+
+            throw new Exception($"Cannot map any of the elements: ({string.Join(",", candidates)})");
+        }
+
         public static double GetXRayAff(string element, double theta, double wavelength)
         {
             var s = Math.Sin(theta) / wavelength;
