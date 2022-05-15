@@ -85,34 +85,69 @@ namespace CodToolkit.ModelView
                 cif.Parameters, 
                 cif.SpaceGroupSymbols);
 
-            var peaks = XrdCalculations.CalculateXrdProfile(
+            var xrdProfile = XrdCalculations.CalculateXrdProfile(
                 crystalLattice, 
-                cif.AtomsInUnitCell).Peaks;
+                cif.AtomsInUnitCell);
+
+            var peaks = xrdProfile.Peaks;
+            var profile = xrdProfile.Profile;
 
             var values = new ChartValues<ObservablePoint>();
             for (var i = 0; i < peaks.Length; i++)
             {
-                values.Add(new ObservablePoint(peaks[i].Q, peaks[i].I));
+                values.Add(
+                    new ObservablePoint(
+                        peaks[i].Q, 
+                        peaks[i].I));
             }
 
-            var series = new ColumnSeries()
+            var peakPositions = new ColumnSeries
             {
                 Values = values,
-                Title = "peaks",
+                Title = "hkl",
                 MaxColumnWidth = 6,
                 StrokeThickness = 1,
                 PointGeometry = null,
                 Stroke = Brushes.Blue,
                 Fill = Brushes.Blue,
-                LabelPoint = point => "", //$"({point.X}, {point.Y})",
+                LabelPoint = point => null,
+                // LabelPoint = point => peaks.Select(
+                //     p => new {distance = Math.Abs(p.Q-point.X), hkl = p.Hkl} )
+                //     .OrderBy(p => p.distance)
+                //     .First()
+                //     .hkl
+                //     .ToString(),
                 DataLabels = true,
                 SharesPosition = false,
                 ToolTip = null
             };
 
+            values = new ChartValues<ObservablePoint>();
+            for (var i = 0; i < profile.Q.Length; i++)
+            {
+                values.Add(
+                    new ObservablePoint(
+                        profile.Q[i],
+                        profile.I[i]));
+            }
+
+            var rim = new LineSeries
+            {
+                Values = values,
+                Title = "profile",
+                StrokeThickness = 1,
+                PointGeometry = null,
+                Stroke = Brushes.Blue,
+                Fill = null,
+                LabelPoint = point => null,
+                DataLabels = true,
+                ToolTip = null
+            };
+
             SeriesCollection = new SeriesCollection
             {
-                series
+                peakPositions,
+                rim
             };
         }
 

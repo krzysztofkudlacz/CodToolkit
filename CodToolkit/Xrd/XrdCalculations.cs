@@ -1,25 +1,34 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using CodToolkit.Crystallography;
 using CodToolkit.Extensions;
+using CodToolkit.XrdProfile;
 
 namespace CodToolkit.Xrd
 {
     public interface IXrdProfile
     {
-        (double Q, double I, IMillerIndices)[] Peaks { get; }
+        (double Q, double I, IMillerIndices Hkl)[] Peaks { get; }
+
+        (double[] Q, double[] I) Profile { get; }
     }
 
     public class XrdProfile : IXrdProfile
     {
-        public (double Q, double I, IMillerIndices)[] Peaks { get; set; }
+        public (double Q, double I, IMillerIndices Hkl)[] Peaks { get; set; }
+
+        public (double[] Q, double[] I) Profile { get; set; }
     }
 
     public static class XrdCalculations
     {
-        private const double MaxQ = 20;
-        private const int NumberOfPoints = 1024;
+        private const double MinQ = 0.0;
+        private const double MaxQ = 2.5;
+        private const int NumberOfPoints = 512;
+        private const double PeakWidth = 5;
         private const double IntensityThreshold = 0.005;
 
         private static IReadOnlyCollection<MillerIndices> _millerIndices;
@@ -76,36 +85,93 @@ namespace CodToolkit.Xrd
             CrystalLattice crystalLattice, 
             IReadOnlyCollection<IAtomInUnitCell> atomsInUnitCell)
         {
+            var selectedPeaks = CalculateXrdPeaks(
+                crystalLattice, 
+                atomsInUnitCell);
+
+            var profile = CalculateXrdProfile(selectedPeaks
+                .Select(p => (p.Q, p.I))
+                .ToArray());
+
+            return new XrdProfile
+            {
+                Peaks = selectedPeaks, 
+                Profile = profile
+            };
+        }
+
+        private static (double Q, double I, IMillerIndices Hkl)[] CalculateXrdPeaks(CrystalLattice crystalLattice,
+            IReadOnlyCollection<IAtomInUnitCell> atomsInUnitCell)
+        {
             var millerIndices = MillerIndices;
 
             var symMillerIndices = new List<List<IMillerIndices>>();
 
             foreach (var mi in millerIndices)
             {
-                if(symMillerIndices.Any(
+                if (symMillerIndices.Any(
                     m => m.Any(
                         e => e.AreEqual(mi, true)))) continue;
-                
+
                 symMillerIndices.Add(
                     crystalLattice
                         .SymmetricalMillerIndices(mi)
                         .ToList());
             }
 
-            var peaks = symMillerIndices.Select(l => l.First())
-                .Select(m => (
-                    Q: 1 / crystalLattice.GetHklVector(m).Norm, 
-                    Hkl: m))
-                .Select(g => (
-                    g.Q, 
-                    I: CalculateStructureFactorSqrt(atomsInUnitCell, g.Hkl, g.Q), 
-                    g.Hkl))
+            var peaks = symMillerIndices.Select(l => (Hkl: l.First(), Multiplicity: l.Count))
+                .Select(p => (
+                    Q: 1 / crystalLattice.GetHklVector(p.Hkl).Norm,
+                    p.Hkl,
+                    p.Multiplicity))
+                .Select(p => (
+                    p.Q,
+                    I: CalculateStructureFactorSqrt(atomsInUnitCell, p.Hkl, p.Q) * p.Multiplicity,
+                    p.Hkl))
                 .ToList();
 
             var threshold = peaks.Select(p => p.I).Max() * IntensityThreshold;
             var selectedPeaks = peaks.Where(p => p.I > threshold).ToArray();
+            return selectedPeaks;
+        }
 
-            return new XrdProfile {Peaks = selectedPeaks};
+        private static (double[] Q, double[] I) CalculateXrdProfile(
+            IEnumerable<(double Q, double I)> peaks)
+        {
+            var qStep = (MaxQ - MinQ) / (NumberOfPoints - 1);
+            var peakWidth = qStep * PeakWidth;
+            var peakShapes = peaks
+                .Select(
+                    p => new PseudoVoigt(
+                        p.Q, 
+                        p.I,
+                        peakWidth, 
+                        0.5))
+                .ToList();
+
+            var q = new double[NumberOfPoints];
+            var intensity = new double[NumberOfPoints];
+            for (var i = 0; i < NumberOfPoints; i++)
+            {
+                q[i] = MinQ + qStep * i;
+            }
+
+            var partitioner = Partitioner.Create(0, NumberOfPoints);
+            Parallel.ForEach(partitioner, range =>
+            {
+                var (u, v) = range;
+
+                for (var i = u; i < v; i++)
+                {
+                    intensity[i] = peakShapes
+                        .Select(
+                            p => p
+                                .Value(q[i]))
+                        .Sum();
+                }
+            });
+
+            return (Q: q, I: intensity);
         }
 
         private static double CalculateStructureFactorSqrt(

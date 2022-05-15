@@ -17,6 +17,8 @@ namespace CodToolkit.Crystallography
         bool AreEqual(
             IMillerIndices millerIndices, 
             bool includeFriedelPair = false);
+
+        string ToString();
     }
 
     public class MillerIndices : IMillerIndices
@@ -70,5 +72,7 @@ namespace CodToolkit.Crystallography
                 millerIndices.K,
                 millerIndices.L
             };
+
+        public override string ToString() => $"({string.Join(",", AsList(this))})";
     }
 }
